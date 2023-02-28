@@ -1,0 +1,42 @@
+@import url("https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap");
+
+@tailwind base;
+
+@layer base {
+  p {
+    @apply text-[#7d7c83];
+  }
+}
+@tailwind components;
+
+@layer components {
+  .container {
+    @apply max-w-[540px] md:max-w-[720px] lg:max-w-[960px] xl:max-w-[1140px] xxl:max-w-[1320px];
+  }
+
+  .section-padding {
+    @apply py-[30px] px-[16px] sm:py-[50px] lg:py-[80px];
+  }
+
+  .primary-btn {
+    @apply bg-[#0066ff] text-white px-[24px] py-[12px] rounded-full duration-300 hover:bg-[#005ce6];
+  }
+
+  .section-title {
+    @apply text-[20px] font-bold md:text-[24px];
+  }
+
+  .section-subtitle {
+    @apply text-[15px] text-[#7d7c83] block font-normal;
+  }
+}
+
+@tailwind utilities;
+
+/* global styles */
+html,
+body {
+  font-size: 1rem;
+  font-family: "Roboto", sans-serif;
+  line-height: 1.4;
+}
