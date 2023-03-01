@@ -18,6 +18,7 @@ const Shop = () => {
                                             Sign in to your account
                                         </h2>
                                         <p className="mt-2 text-center text-sm text-gray-600">
+                                            {/* eslint-disable jsx-a11y/anchor-is-valid */}
                                             <a href="#" className="font-medium text-indigo-600 hover:text-indigo-500">
                                                 Login to get started with Ace Garage
                                             </a>
@@ -78,7 +79,7 @@ const Shop = () => {
 
                                         <div>
                                             <button
-                                                type="submit"
+                                                type="submit" 
                                                 className="group relative flex w-full justify-center rounded-md border border-transparent bg-indigo-600 py-2 px-4 text-sm font-medium text-white hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2">
                                                 <span className="absolute inset-y-0 left-0 flex items-center pl-3">
 

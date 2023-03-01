@@ -40,10 +40,10 @@ const Navbar = () => {
               <NavLink to="appointment">Appointment</NavLink>
             </li>
             <li>
-              <NavLink to="shop">Shop</NavLink>
+              <NavLink to="shop">Login</NavLink>
             </li>
             <li>
-              <NavLink to="contact">Contact</NavLink>
+              <NavLink to="contact">Signup</NavLink>
             </li>
           </ul>
         </div>
