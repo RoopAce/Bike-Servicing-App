@@ -1,4 +1,5 @@
 const mongoose = require("mongoose");
+const validator = require("validator");
 
 // connection creation and creating a new db
 mongoose.connect("mongodb://127.0.0.1:27017/roopace", { useNewUrlParser: true, useUnifiedTopology: true })
@@ -21,8 +22,26 @@ const playlistSchema = new mongoose.Schema({
         type: String,
         required: true
     },
-    videos: Number,
+    videos: {
+        type: Number,
+        // validate(value){
+        //     if (value < 0){
+        //         throw new Error("Videos caount should not be negative");
+        //     }
+        // }
+
+    },
     author: String,
+    email: {
+        type: String,
+        required: true,
+        unique: true,
+        validate(value){
+            if(!validator.isEmail(value)){
+                throw new Error("Email is inValid");
+            }
+        }
+    },
     active: Boolean,
     date: {
         type: Date,
@@ -68,10 +87,11 @@ const createDocument = async () => {
         // })
 
         const expressPlaylist = new Playlist({
-            name: "         ExpReSs JS                    ",
+            name: "Emai_check",
             ctype: "Back End",
-            videos: 11,
+            videos: -5,
             author: "RoopAce",
+            email: "Roopace.ho@sd",
             active: true,
         })
 
