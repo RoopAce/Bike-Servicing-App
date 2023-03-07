@@ -12,9 +12,15 @@ mongoose.connect("mongodb://127.0.0.1:27017/roopace", { useNewUrlParser: true, u
 const playlistSchema = new mongoose.Schema({
     name: {
         type: String,
+        required: true,
+        unique: true,
+        uppercase: false,
+        trim: true
+    },
+    ctype: {
+        type: String,
         required: true
     },
-    ctype: String,
     videos: Number,
     author: String,
     active: Boolean,
@@ -37,51 +43,86 @@ const Playlist = new mongoose.model("Playlist", playlistSchema);
 
 const createDocument = async () => {
     try {
-        const jsPlaylist = new Playlist({
-            name: "javascript",
-            ctype: "Front End",
-            videos: 200,
-            author: "RoopAce",
-            active: true,
-        })
+        // const jsPlaylist = new Playlist({
+        //     name: "javascript",
+        //     ctype: "Front End",
+        //     videos: 200,
+        //     author: "RoopAce",
+        //     active: true,
+        // })
 
-        const mongoPlaylist = new Playlist({
-            name: "MongoDB",
-            ctype: "Database",
-            videos: 20,
-            author: "RoopAce",
-            active: true,
-        })
+        // const mongoPlaylist = new Playlist({
+        //     name: "MongoDB",
+        //     ctype: "Database",
+        //     videos: 20,
+        //     author: "RoopAce",
+        //     active: true,
+        // })
 
-        const mongoosePlaylist = new Playlist({
-            name: "Mongoose JS",
-            ctype: "Database",
-            videos: 4,
-            author: "RoopAce",
-            active: true,
-        })
+        // const mongoosePlaylist = new Playlist({
+        //     name: "Mongoose JS",
+        //     ctype: "Database",
+        //     videos: 4,
+        //     author: "RoopAce",
+        //     active: true,
+        // })
 
         const expressPlaylist = new Playlist({
-            name: "Express JS",
+            name: "         ExpReSs JS                    ",
             ctype: "Back End",
-            videos: 2,
+            videos: 11,
             author: "RoopAce",
             active: true,
         })
 
-        const result = await Playlist.insertMany([jsPlaylist,mongoPlaylist,mongoosePlaylist,expressPlaylist ]);
+        const result = await Playlist.insertMany([expressPlaylist]);
         console.log(result);
     } catch (err) {
         console.log(err);
     }
 }
 
-/// createDocument();
+createDocument();
 
-const getDocument = async () =>{
-    const result = await Playlist.find({ctype: "Front End"})
-    .select({name:1})
-     .limit(1);
+const getDocument = async () => {
+    const result = await Playlist
+        .find({ author: "RoopAce" })
+        .select({ name: 1 })
+        // .sort({name : -1});
+        .countDocuments();
+    //  .limit(1);
     console.log(result);
 }
-getDocument();
+// getDocument();
+
+//update the document
+const updateDocument = async (_id) => {
+    try {
+        const result = await Playlist.updateOne({ _id }, {
+            $set: {
+                name: "Javascript"
+            }
+        });
+
+        console.log(result);
+
+    } catch (err) {
+        console.log(err);
+    }
+
+}
+
+// updateDocument("6400ad301c3d03d6b762be43");
+
+// delete the document
+
+const deleteDocument = async (_id) => {
+    try {
+        const result = await Playlist.findByIdAndDelete({ _id });
+        console.log(result);
+    } catch (err) {
+        console.log(err);
+    }
+
+}
+// deleteDocument("6400ae251c3d03d6b762be44")
