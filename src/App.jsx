@@ -11,8 +11,10 @@ import Home from "./pages/Home";
 import Services from "./pages/Services";
 import Appointment from "./pages/Appointment";
 import Contact from "./pages/Contact";
+import Signup from "./pages/Signup";
+import Login from "./pages/Login";
+
 import NotFound from "./pages/NotFound";
-import Shop from "./pages/Shop";
 
 const pageRouter = createBrowserRouter(
   createRoutesFromElements(
@@ -20,8 +22,9 @@ const pageRouter = createBrowserRouter(
       <Route path="/" element={<Home />}></Route>
       <Route path="services" element={<Services />}></Route>
       <Route path="appointment" element={<Appointment />}></Route>
-      <Route path="shop" element={<Shop />}></Route>
       <Route path="contact" element={<Contact />}></Route>
+      <Route path="signup" element={<Signup />}></Route>
+      <Route path="login" element={<Login />}></Route>
 
       <Route path="*" element={<NotFound />}></Route>
     </Route>

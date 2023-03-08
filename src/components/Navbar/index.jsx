@@ -10,17 +10,16 @@ import Button from "../UI/Buttton";
 const Navbar = () => {
   const [toggleNav, setToggleNav] = useState(false);
 
-
   const handleToggle = () => {
     return setToggleNav((prevValue) => !prevValue);
-  
-
   };
 
   return (
     <nav className="shadow-lg sticky z-[99]">
       <Container className="py-[20px] px-[8px] flex justify-between items-center">
-        <span className="uppercase text-[24px] font-semibold"><Link to ="/">Ace Garage </Link></span>
+        <span className="uppercase text-[24px] font-semibold">
+          <Link to="/">Ace Garage </Link>
+        </span>
         <Button
           className="text-[32px] md:hidden"
           type="button"
@@ -40,10 +39,10 @@ const Navbar = () => {
               <NavLink to="appointment">Appointment</NavLink>
             </li>
             <li>
-              <NavLink to="shop">Login</NavLink>
+              <NavLink to="login">Login</NavLink>
             </li>
             <li>
-              <NavLink to="contact">Signup</NavLink>
+              <NavLink to="signup">Signup</NavLink>
             </li>
           </ul>
         </div>
@@ -75,13 +74,13 @@ const Navbar = () => {
               </NavLink>
             </li>
             <li>
-              <NavLink onClick={handleToggle} to="shop">
-                Shop
+              <NavLink onClick={handleToggle} to="login">
+                login
               </NavLink>
             </li>
             <li>
-              <NavLink onClick={handleToggle} to="contact">
-                Contact
+              <NavLink onClick={handleToggle} to="signup">
+                sinup
               </NavLink>
             </li>
           </ul>
