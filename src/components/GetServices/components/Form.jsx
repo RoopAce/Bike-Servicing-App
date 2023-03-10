@@ -10,7 +10,7 @@ const Form = () => {
     <>
       <h3 className="text-lg font-bold">Get our Services</h3>
       <p className="mb-8">Caught our 10% amazing offers</p>
-      <form action="">
+      <form action="POST">
         <Row className="space-y-4">
           <RowItem className="w-full">
             <Input type="text" placeholder="Your Name" />

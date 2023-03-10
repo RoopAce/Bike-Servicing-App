@@ -1,6 +1,28 @@
+import { Navigate } from "react-router-dom";
 import Container from "../../components/UI/Container";
+import React, { useState } from "react";
+import axios from "axios";
 
 const Login = () => {
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
+  const [redirect, setRedirect] = useState(false);
+  async function handleLoginSubmit(e) {
+    e.preventDefault();
+    try {
+      await axios.post('/login', {email,password});
+      alert('Login Successful');
+      setRedirect(true);
+    } catch(e) {
+      alert('Login failed');
+    }
+   
+  }
+
+    if (redirect) {
+      return <Navigate to={'/'} />
+    }
+
   return (
     <section>
       <Container className="min-h-[600px] flex justify-center items-center">
@@ -16,7 +38,7 @@ const Login = () => {
               Login to get started with Ace Garage
             </a>
           </p>
-          <form className="mt-8 space-y-6" action="#" method="POST">
+          <form className="mt-8 space-y-6" action="#" method="POST" onSubmit={handleLoginSubmit}>
             <input type="hidden" name="remember" defaultValue="true" />
             <div className="-space-y-px rounded-md shadow-sm">
               <div>
@@ -31,6 +53,7 @@ const Login = () => {
                   required
                   className="relative block w-full appearance-none rounded-none rounded-t-md border border-gray-300 px-3 py-2 text-gray-900 placeholder-gray-500 focus:z-10 focus:border-indigo-500 focus:outline-none focus:ring-indigo-500 sm:text-sm"
                   placeholder="Email address"
+                  value={email} onChange={e => setEmail(e.target.value)}
                 />
               </div>
               <div>
@@ -45,6 +68,8 @@ const Login = () => {
                   required
                   className="relative block w-full appearance-none rounded-none rounded-b-md border border-gray-300 px-3 py-2 text-gray-900 placeholder-gray-500 focus:z-10 focus:border-indigo-500 focus:outline-none focus:ring-indigo-500 sm:text-sm"
                   placeholder="Password"
+                  value={password}
+                  onChange={e => setPassword(e.target.value)}
                 />
               </div>
             </div>

@@ -13,8 +13,12 @@ import Appointment from "./pages/Appointment";
 import Contact from "./pages/Contact";
 import Signup from "./pages/Signup";
 import Login from "./pages/Login";
+import axios from "axios";
 
 import NotFound from "./pages/NotFound";
+
+axios.defaults.baseURL = 'http://localhost:4000';
+axios.defaults.withCredentials = true;
 
 const pageRouter = createBrowserRouter(
   createRoutesFromElements(

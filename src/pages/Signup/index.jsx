@@ -6,9 +6,21 @@ const Signup = () => {
   const [name,setName] = useState('');
   const [email,setEmail] = useState('');
   const [password,setPassword] = useState('');
-  function registerUser(ev){
-    ev.preventDefault();
-    axios.get('http://localhost:4000/test');
+  async function registerUser(e){
+    e.preventDefault();
+    try {
+      await axios.post('/register', {
+        name,
+        email,
+        password,
+      });
+      alert("Registration successful. Now you can login");
+
+    } catch (e){
+      alert("Registration failed. Please try again later");
+    }
+    
+
   }
   return (
     <section className="min-h-screen flex items-center justify-center bg-gray-50 py-12 px-4 sm:px-6 lg:px-8">
@@ -23,8 +35,9 @@ const Signup = () => {
         <div>
           <div className="flex flex-col items-center min-h-screen pt-6 sm:justify-center sm:pt-0 bg-gray-50">
             <div className="w-full px-6 py-4 mt-6 overflow-hidden bg-white shadow-md sm:max-w-lg sm:rounded-lg">
-              <form>
+              <form onSubmit={registerUser}>
                 <div>
+                  
                   <label
                     htmlFor="name"
                     className="block text-sm font-medium text-gray-700 undefined">
@@ -36,7 +49,7 @@ const Signup = () => {
                       name="name"
                       placeholder="Full name"
                       value={name} 
-                      onChange={ev => setName(ev.target.value)}
+                      onChange={e => setName(e.target.value)}
                       className="block w-full mt-1 border-gray-300 rounded-md shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50"
                     />
                   </div>
@@ -54,7 +67,7 @@ const Signup = () => {
                       name="email"
                       placeholder="Your Email"
                       value={email} 
-                      onChange={ev => setEmail(ev.target.value)}
+                      onChange={e => setEmail(e.target.value)}
                       className="block w-full mt-1 border-gray-300 rounded-md shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50"
                     />
                   </div>
@@ -72,7 +85,7 @@ const Signup = () => {
                       name="password"
                       placeholder="Your password"
                       value={password} 
-                      onChange={ev => setPassword(ev.target.value)}
+                      onChange={e => setPassword(e.target.value)}
                       className="block w-full mt-1 border-gray-300 rounded-md shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50"
                     />
                   </div>
@@ -150,7 +163,7 @@ const Signup = () => {
             </div>
           </div>
         </div>
-        
+       
       </Container>
     </section>
   );
