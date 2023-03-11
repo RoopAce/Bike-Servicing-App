@@ -16,12 +16,14 @@ import Login from "./pages/Login";
 import axios from "axios";
 
 import NotFound from "./pages/NotFound";
+import { UserContextProvider } from "./pages/Registerpage/usercontext";
 
 axios.defaults.baseURL = 'http://localhost:4000';
 axios.defaults.withCredentials = true;
 
 const pageRouter = createBrowserRouter(
   createRoutesFromElements(
+    <UserContextProvider> 
     <Route element={<Root />}>
       <Route path="/" element={<Home />}></Route>
       <Route path="services" element={<Services />}></Route>
@@ -32,6 +34,7 @@ const pageRouter = createBrowserRouter(
 
       <Route path="*" element={<NotFound />}></Route>
     </Route>
+    </UserContextProvider>
   )
 );
 
