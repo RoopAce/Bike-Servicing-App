@@ -15,7 +15,7 @@ const HeroContent = () => {
         the road and enjoy the ride with our comprehensive bike servicing
         solutions.
       </p>
-      <Link className="primary-btn" type="button" role="button" to="/">
+      <Link className="primary-btn" type="button" role="button" to="services">
         Book your service today!
       </Link>
     </div>

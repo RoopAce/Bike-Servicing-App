@@ -6,7 +6,7 @@ const bcrypt = require('bcrypt');
 const jwt = require('jsonwebtoken');
 const User = require('./models/User.js');
 const app = express();
-
+// const auth = require ('./models/auth.js')
 const bcryptSalt = bcrypt.genSaltSync(10);
 const jwtSecret = 'asjdasdkasd';
 // require("./src/db/conn");
@@ -52,6 +52,9 @@ app.post('/register', async (req,res) => {
 
     
 });
+ 
+// //middlewares
+// app.use("/auth", authRoute);
 
 app.post('/login', async (req,res) => {
     const {email,password} = req.body;
@@ -61,7 +64,7 @@ app.post('/login', async (req,res) => {
         if (passOk) {
             jwt.sign({email:userDoc.email, id:userDoc._id}, jwtSecret, {}, (err,token) => {
                 if (err) throw err;
-                res.cookie('token', token).json(userDoc);
+                res.cookie('token', token).json('pass ok');
             });
             
         } else {

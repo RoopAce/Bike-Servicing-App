@@ -1,20 +1,19 @@
-import { useContext, useState } from "react";
+import { useState } from "react";
 import { Link, NavLink } from "react-router-dom";
 import clsx from "clsx";
-import { UserContext } from "../../pages/Registerpage/usercontext.jsx";
+
 import { HiOutlineMenuAlt1, HiOutlineX } from "react-icons/hi";
 
 import Container from "../UI/Container";
 import Button from "../UI/Buttton";
 
 const Navbar = () => {
-  
   const [toggleNav, setToggleNav] = useState(false);
 
   const handleToggle = () => {
     return setToggleNav((prevValue) => !prevValue);
   };
-  const {user} = useContext(UserContext);
+  
   return (
     <nav className="shadow-lg sticky z-[99]">
       <Container className="py-[20px] px-[8px] flex justify-between items-center">
@@ -40,6 +39,7 @@ const Navbar = () => {
               <NavLink to="appointment">Appointment</NavLink>
             </li>
             <li>
+              
               <NavLink to="login">Login</NavLink>
             </li>
             <li>
@@ -81,7 +81,7 @@ const Navbar = () => {
             </li>
             <li>
               <NavLink onClick={handleToggle} to="signup">
-                signup
+                sinup
               </NavLink>
             </li>
           </ul>
