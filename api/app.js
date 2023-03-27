@@ -37,7 +37,7 @@ app.post('/register', async (req,res) => {
     const {name,email,phoneNumber,password,userType} = req.body;
 
     try {
-
+        console.log(userType)
         const userDoc = await User.create({
             name,
             email,

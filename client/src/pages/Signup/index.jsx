@@ -17,6 +17,7 @@ const Signup = () => {
         email,
         phoneNumber,
         password,
+        userType,
       });
       alert("Registration successful. Now you can login");
 
@@ -218,14 +219,14 @@ const Signup = () => {
           </div>
         </div>
 
-        {/* add the script here */}
-        <script>
+        {/* {<script>
           const googleLoginBtn = document.getElementById("google-login-btn");
           googleLoginBtn.addEventListener("click", function() {
             // Code to trigger when the button is clicked
             console.log("Button clicked!")
           });
-        </script>
+        </script>} */}
+        
       </Container>
     </section>
   );

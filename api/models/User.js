@@ -24,8 +24,7 @@ const UserSchema = new Schema({
     },
     userType: {
         type: String,
-        enum: ['vendor', 'user'],
-        default: 'user'
+        enum: ['vendor', 'user']
       },
   });
 
