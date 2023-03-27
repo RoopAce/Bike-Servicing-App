@@ -3,41 +3,45 @@ import { useState } from "react";
 import axios from "axios";
 
 const Signup = () => {
-  const [name,setName] = useState('');
-  const [email,setEmail] = useState('');
-  const [password,setPassword] = useState('');
-  async function registerUser(e){
+  const [name, setName] = useState('');
+  const [email, setEmail] = useState('');
+  const [phoneNumber, setPhoneNumber] = useState('');
+  const [password, setPassword] = useState('');
+  const [confirmPassword, setConfirmPassword] = useState('');
+  const [userType, setUserType] = useState('');
+  async function registerUser(e) {
     e.preventDefault();
     try {
       await axios.post('/register', {
         name,
         email,
+        phoneNumber,
         password,
       });
       alert("Registration successful. Now you can login");
 
-    } catch (e){
+    } catch (e) {
       alert("Registration failed. Please try again later");
     }
-    
+
 
   }
   return (
     <section className="min-h-screen flex items-center justify-center bg-gray-50 py-12 px-4 sm:px-6 lg:px-8">
       <Container>
-      
+
         <div>
           <h2 className="mt-6 text-center text-3xl font-bold tracking-tight text-gray-900" >
             Sign up for an account
           </h2>
-          
+
         </div>
         <div>
           <div className="flex flex-col items-center min-h-screen pt-6 sm:justify-center sm:pt-0 bg-gray-50">
             <div className="w-full px-6 py-4 mt-6 overflow-hidden bg-white shadow-md sm:max-w-lg sm:rounded-lg">
               <form onSubmit={registerUser}>
                 <div>
-                  
+
                   <label
                     htmlFor="name"
                     className="block text-sm font-medium text-gray-700 undefined">
@@ -48,7 +52,7 @@ const Signup = () => {
                       type="text"
                       name="name"
                       placeholder="Full name"
-                      value={name} 
+                      value={name}
                       onChange={e => setName(e.target.value)}
                       className="block w-full mt-1 border-gray-300 rounded-md shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50"
                     />
@@ -66,12 +70,29 @@ const Signup = () => {
                       type="email"
                       name="email"
                       placeholder="Your Email"
-                      value={email} 
+                      value={email}
                       onChange={e => setEmail(e.target.value)}
                       className="block w-full mt-1 border-gray-300 rounded-md shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50"
                     />
                   </div>
                 </div>
+
+                <div className="mt-4">
+                  <label htmlFor="phonenumber" className="block text-sm font-medium text-gray-700">
+                    Phone number
+                  </label>
+                  <div className="flex flex-col items-start">
+                    <input
+                      type="tel"
+                      name="number"
+                      placeholder="Your Phone number"
+                      value={phoneNumber}
+                      onChange={e => setPhoneNumber(e.target.value)}
+                      className="block w-full mt-1 border-gray-300 rounded-md shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50"
+                    />
+                  </div>
+                </div>
+
                 <div className="mt-4">
                   <label
                     htmlFor="password"
@@ -84,7 +105,7 @@ const Signup = () => {
                       type="password"
                       name="password"
                       placeholder="Your password"
-                      value={password} 
+                      value={password}
                       onChange={e => setPassword(e.target.value)}
                       className="block w-full mt-1 border-gray-300 rounded-md shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50"
                     />
@@ -101,8 +122,39 @@ const Signup = () => {
                     <input
                       type="password"
                       name="password_confirmation"
+                      placeholder="Confirm password"
+                      value={confirmPassword}
+                      onChange={(e) => setConfirmPassword(e.target.value)}
                       className="block w-full mt-1 border-gray-300 rounded-md shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50"
                     />
+                  </div>
+                </div>
+
+                <div className="mt-4">
+                  <label htmlFor="userType" className="block text-sm font-medium text-gray-700">
+                    User Type
+                  </label>
+                  <div className="relative inline-block w-full text-gray-700">
+                    <select
+                      className="w-full h-10 pl-3 pr-6 text-base placeholder-gray-600 border rounded-lg appearance-none focus:shadow-outline"
+                      name="userType"
+                      value={userType}
+                      onChange={e => setUserType(e.target.value)}
+                    >
+                      <option value="">Select user type</option>
+                      <option value="vendor">Vendor</option>
+                      <option value="user">User</option>
+                    </select>
+                    <div className="absolute inset-y-0 right-0 flex items-center px-2 pointer-events-none">
+                      <svg
+                        className="w-4 h-4 fill-current"
+                        viewBox="0 0 20 20"
+                      >
+                        <path
+                          d="M14.95 7.879L10 12.828l-4.95-4.95A1.5 1.5 0 014.879 6H15.12a1.5 1.5 0 011.06 2.879z"
+                        />
+                      </svg>
+                    </div>
                   </div>
                 </div>
                 <a href="/" className="text-xs text-purple-600 hover:underline">
@@ -135,6 +187,7 @@ const Signup = () => {
                   aria-label="Login with Google"
                   type="button"
                   className="flex items-center justify-center w-full p-2 space-x-4 border rounded-md focus:ring-2 focus:ring-offset-1 dark:border-gray-400 focus:ring-violet-400"
+                  id="google-login-btn"
                 >
                   <svg
                     xmlns="http://www.w3.org/2000/svg"
@@ -147,7 +200,7 @@ const Signup = () => {
                 </button>
                 <button
                   aria-label="Login with GitHub"
-                  
+
                   className="flex items-center justify-center w-full p-4 space-x-4 border rounded-md focus:ring-2 focus:ring-offset-1 dark:border-gray-400 focus:ring-violet-400"
                 >
                   <svg
@@ -159,11 +212,20 @@ const Signup = () => {
                   </svg>
                   <p>Login with GitHub</p>
                 </button>
+
               </div>
             </div>
           </div>
         </div>
-       
+
+        {/* add the script here */}
+        <script>
+          const googleLoginBtn = document.getElementById("google-login-btn");
+          googleLoginBtn.addEventListener("click", function() {
+            // Code to trigger when the button is clicked
+            console.log("Button clicked!")
+          });
+        </script>
       </Container>
     </section>
   );
