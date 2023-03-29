@@ -1,12 +1,15 @@
 import { BrowserRouter } from 'react-router-dom';
 import { HelmetProvider } from 'react-helmet-async';
 // routes
-import Router from './routes';
+import Router from './routes/routes';
+
 // theme
 import ThemeProvider from './theme';
+
 // components
-import { StyledChart } from './components/chart';
 import ScrollToTop from './components/scroll-to-top';
+import Navbar from "./components/Navbar"
+import Footer from "./components/Footer"
 
 // import {
 //   createBrowserRouter,
@@ -57,14 +60,17 @@ import ScrollToTop from './components/scroll-to-top';
 
 export default function App() {
   return (
+    <>
     <HelmetProvider>
       <BrowserRouter>
         <ThemeProvider>
           <ScrollToTop />
-          <StyledChart />
+          <Navbar/>
           <Router />
+          <Footer/>
         </ThemeProvider>
       </BrowserRouter>
     </HelmetProvider>
+    </>
   );
 }
