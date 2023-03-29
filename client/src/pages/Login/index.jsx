@@ -20,7 +20,7 @@ const Login = () => {
   }
 
     if (redirect) {
-      return <Navigate to={'/'} />
+      return <Navigate to={'/dashboard'} />
     }
 
   return (

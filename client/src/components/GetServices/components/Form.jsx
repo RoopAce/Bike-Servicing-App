@@ -25,6 +25,9 @@ const Form = () => {
             <Input type="text" placeholder="City" />
           </RowItem>
           <RowItem className="w-full">
+            <Input type="text" placeholder="Selected Service" />
+          </RowItem>
+          <RowItem className="w-full">
             <Input type="text" placeholder="Bike Model" />
           </RowItem>
           <RowItem className="w-full text-end">

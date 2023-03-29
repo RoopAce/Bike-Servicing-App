@@ -76,5 +76,13 @@ app.post('/login', async (req,res) => {
         res.json('Not found');
     }
 });
+
+// //logout
+// app.get("/logout", (req, res) => {
+//     res.json("hello my logout page");
+//     res.clearCookie('jwtoken', { path: '/'})
+//     res.status(200).send('user Logout');
+// });
+
 app.listen(4000);
 

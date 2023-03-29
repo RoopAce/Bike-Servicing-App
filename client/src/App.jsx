@@ -1,42 +1,70 @@
-import {
-  createBrowserRouter,
-  createRoutesFromElements,
-  Route,
-  RouterProvider,
-} from "react-router-dom";
+import { BrowserRouter } from 'react-router-dom';
+import { HelmetProvider } from 'react-helmet-async';
+// routes
+import Router from './routes';
+// theme
+import ThemeProvider from './theme';
+// components
+import { StyledChart } from './components/chart';
+import ScrollToTop from './components/scroll-to-top';
 
-import Root from "./routes";
+// import {
+//   createBrowserRouter,
+//   createRoutesFromElements,
+//   Route,
+//   RouterProvider,
+// } from "react-router-dom";
 
-import Home from "./pages/Home";
-import Services from "./pages/Services";
-import Appointment from "./pages/Appointment";
-import Contact from "./pages/Contact";
-import Signup from "./pages/Signup";
-import Login from "./pages/Login";
-import axios from "axios";
+// import Root from "./routes";
 
-import NotFound from "./pages/NotFound";
+// import Home from "./pages/Home";
+// import Services from "./pages/Services";
+// import Appointment from "./pages/Appointment";
+// import Contact from "./pages/Contact";
+// import Signup from "./pages/Signup";
+// import Login from "./pages/Login";
+// // import Logout from "./pages/Logout";
 
-axios.defaults.baseURL = 'http://localhost:4000';
-axios.defaults.withCredentials = true;
+// import axios from "axios";
 
-const pageRouter = createBrowserRouter(
-  createRoutesFromElements(
-    <Route element={<Root />}>
-      <Route path="/" element={<Home />}></Route>
-      <Route path="services" element={<Services />}></Route>
-      <Route path="appointment" element={<Appointment />}></Route>
-      <Route path="contact" element={<Contact />}></Route>
-      <Route path="signup" element={<Signup />}></Route>
-      <Route path="login" element={<Login />}></Route>
+// import NotFound from "./pages/NotFound";
 
-      <Route path="*" element={<NotFound />}></Route>
-    </Route>
-  )
-);
+// axios.defaults.baseURL = 'http://localhost:4000';
+// axios.defaults.withCredentials = true;
 
-const App = () => {
-  return <RouterProvider router={pageRouter} />;
-};
+// const pageRouter = createBrowserRouter(
+//   createRoutesFromElements(
+//     <Route element={<Root />}>
+//       <Route path="/" element={<Home />}></Route>
+//       <Route path="services" element={<Services />}></Route>
+//       <Route path="appointment" element={<Appointment />}></Route>
+//       <Route path="contact" element={<Contact />}></Route>
+//       <Route path="signup" element={<Signup />}></Route>
+//       <Route path="login" element={<Login />}></Route>
+//       <Route path="logout" element={<Logout />}></Route>
 
-export default App;
+
+//       <Route path="*" element={<NotFound />}></Route>
+//     </Route>
+//   )
+// );
+
+// const App = () => {
+//   return <RouterProvider router={pageRouter} />;
+// };
+
+// export default App;
+
+export default function App() {
+  return (
+    <HelmetProvider>
+      <BrowserRouter>
+        <ThemeProvider>
+          <ScrollToTop />
+          <StyledChart />
+          <Router />
+        </ThemeProvider>
+      </BrowserRouter>
+    </HelmetProvider>
+  );
+}
