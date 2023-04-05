@@ -45,9 +45,9 @@ const Navbar = () => {
             <li>
               <NavLink to="signup">Signup</NavLink>
             </li>
-            <li>
+            {/* <li>
               <NavLink to="logout">Logout</NavLink>
-            </li>
+            </li> */}
             
           </ul>
         </div>
@@ -80,12 +80,12 @@ const Navbar = () => {
             </li>
             <li>
               <NavLink onClick={handleToggle} to="login">
-                login
+                Login
               </NavLink>
             </li>
             <li>
               <NavLink onClick={handleToggle} to="signup">
-                signup
+                Signup
               </NavLink>
             </li>
             <li>

@@ -143,7 +143,8 @@ const Signup = () => {
                       onChange={e => setUserType(e.target.value)}
                     >
                       <option value="">Select user type</option>
-                      <option value="vendor">Vendor</option>
+                      <option value="admin">Admin</option>
+                      <option value="vendor">Employee</option>
                       <option value="user">User</option>
                     </select>
                     <div className="absolute inset-y-0 right-0 flex items-center px-2 pointer-events-none">

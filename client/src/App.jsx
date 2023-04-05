@@ -66,7 +66,7 @@ export default function App() {
         <ThemeProvider>
           <ScrollToTop />
           <Navbar/>
-          <Router />
+          <Router />  
           <Footer/>
         </ThemeProvider>
       </BrowserRouter>

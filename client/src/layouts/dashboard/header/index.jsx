@@ -1,11 +1,11 @@
 import PropTypes from 'prop-types';
 // @mui
 import { styled } from '@mui/material/styles';
-import { Box, Stack, AppBar, Toolbar, IconButton } from '@mui/material';
+import { Box, Stack, AppBar, Toolbar } from '@mui/material';
 // utils
 import { bgBlur } from '../../../utils/cssStyles';
 // components
-import Iconify from '../../../components/iconify';
+import Typography from '@mui/material/Typography';
 //
 import Searchbar from './Searchbar';
 import AccountPopover from './AccountPopover';
@@ -46,16 +46,16 @@ export default function Header({ onOpenNav }) {
   return (
     <StyledRoot>
       <StyledToolbar>
-        <IconButton
-          onClick={onOpenNav}
-          sx={{
-            mr: 1,
-            color: 'text.primary',
-            display: { lg: 'none' },
-          }}
-        >
-          <Iconify icon="eva:menu-2-fill" />
-        </IconButton>
+      <Typography
+  onClick={onOpenNav}
+  sx={{
+    mr: 1,
+    color: 'text.primary',
+    display: { lg: 'none' },
+  }}
+>
+  ACE GARAGE
+</Typography>
 
         <Searchbar />
         <Box sx={{ flexGrow: 1 }} />

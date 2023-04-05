@@ -15,7 +15,11 @@ import Appointment from "../pages/Appointment";
 import Contact from "../pages/Contact";
 import Signup from "../pages/Signup";
 import Login from "../pages/Login";
+
 // import Logout from "./pages/Logout";
+import UserPage from '../pages/UserPage';
+import EmployeePage from '../pages/EmployeePage'
+import Blog from '../pages/BlogPage'
 
 import axios from "axios";
 
@@ -63,8 +67,8 @@ export default function Router() {
       children: [
         { element: <Navigate to="/dashboard/app" />, index: true },
         { path: 'app', element: <DashboardAppPage /> },
-        // { path: 'user', element: <UserPage /> },
-        // { path: 'products', element: <ProductsPage /> },
+        { path: 'user', element: <UserPage /> },
+        { path: 'employee', element: <EmployeePage /> },
         // { path: 'blog', element: <BlogPage /> },
       ],
     },
@@ -76,10 +80,10 @@ export default function Router() {
         // { path: '*', element: <Navigate to="/404" /> },
       ],
     },
-    // {
-    //   path: '*',
-    //   element: <Navigate to="/404" replace />,
-    // },
+    {
+      path: '*',
+      element: <Navigate to="/404" replace />,
+    },
   ]);
 
   return routes;
