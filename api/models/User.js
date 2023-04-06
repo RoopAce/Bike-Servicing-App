@@ -5,6 +5,7 @@ const UserSchema = new Schema({
     name: {
       type: String,
       required: true,
+      unique: true,
     },
     email: {
       type: String,
@@ -15,6 +16,7 @@ const UserSchema = new Schema({
     phoneNumber: {
       type: String,
       required: true,
+      unique: true,
       match: /^\d{10}$/, // assuming you want 10 digit phone numbers
     },
     password: {

@@ -68,7 +68,7 @@ export default function AddEmployeeModal({open,setOpen}) {
                 aria-describedby="parent-modal-description"
             >
                 <Box sx={{ ...style }}>
-                    <Typography sx={{ margin: '10px 0 0 0px', fontSize: '24px' }}>Add New Employee</Typography>
+                    <Typography sx={{ margin: '10px 0 0 0px', fontSize: '24px' }}>Add New User</Typography>
                     <PersonalInfo />
                     <AccountDetail />
                     <ButtonBtn handleBigModalClose={handleClose}/> 
@@ -164,7 +164,7 @@ function CancelModel({handleBigModalClose}) {
                     <Stack  spacing={2} alignItems='center' justifyContent={'center'}>
 
                 <Typography component='div' variant='h5'  >Go Back?</Typography>
-                <Typography variant='body2' component='span' sx={{marginTop:'10px'}}>Cancel current unsaved changes and go back to employee list?</Typography>
+                <Typography variant='body2' component='span' sx={{marginTop:'10px'}}>Cancel current unsaved changes and go back to staff list?</Typography>
                 <Stack direction={'row'} gap={2} >
 
                     <Button onClick={handleBigModalClose}>CANCEL AND GO BACK</Button>
@@ -203,7 +203,7 @@ function SaveModel({handleBigModalClose}) {
                 <Box sx={{ ...SaveStyle, width: 200, textAlign:'center' }}>
                    <Stack spacing={2} alignItems='center' justifyContent={'center'}>
                    <Typography variant='h5' component={'div'} sx={{color:'#219653'}}>Success</Typography>
-                   <Typography variant='body1' component={'span'} sx={{margin:'10px 0 10px 0'}}>New Emoloyee registered successfully.</Typography>
+                   <Typography variant='body1' component={'span'} sx={{margin:'10px 0 10px 0'}}>New User registered successfully.</Typography>
                     <Button onClick={handleBigModalClose} variant='contained' sx={{backgroundColor:' #3150A1',color:'white',width:'50%'}}>Confirm</Button>
                    </Stack>
                 </Box>

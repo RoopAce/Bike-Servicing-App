@@ -89,9 +89,9 @@ const Navbar = () => {
               </NavLink>
             </li>
             <li>
-              <NavLink onClick={handleToggle} to="logout">
+              {/* <NavLink onClick={handleToggle} to="logout">
                 Logout
-              </NavLink>
+              </NavLink> */}
             </li>
           </ul>
         </div>

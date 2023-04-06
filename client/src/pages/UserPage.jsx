@@ -30,6 +30,7 @@ import Scrollbar from '../components/scrollbar';
 import { UserListHead, UserListToolbar } from '../sections/@dashboard/user';
 // mock
 import USERLIST from '../_mock/user';
+import AddUserModals from './Modals/AddUserModals';
 
 // ----------------------------------------------------------------------
 
@@ -74,6 +75,14 @@ function applySortFilter(array, comparator, query) {
 }
 
 export default function UserPage() {
+
+// Open add employee modal
+const [ openAddUser, setOpenAddUser ] = useState(false);
+const handleOpenAddUser = () => {setOpenAddUser(true)};
+// Open add employee modal
+
+
+
   const [open, setOpen] = useState(null);
 
   const [page, setPage] = useState(0);
@@ -157,7 +166,7 @@ export default function UserPage() {
           <Typography variant="h4" gutterBottom>
             User
           </Typography>
-          <Button variant="contained" startIcon={<Iconify icon="eva:plus-fill" />}>
+          <Button variant="contained" startIcon={<Iconify icon="eva:plus-fill" />} onClick={handleOpenAddUser}>
             New User
           </Button>
         </Stack>
@@ -289,6 +298,7 @@ export default function UserPage() {
           Delete
         </MenuItem>
       </Popover>
+      <AddUserModals open={openAddUser} setOpen={setOpenAddUser} />
     </>
   );
 }

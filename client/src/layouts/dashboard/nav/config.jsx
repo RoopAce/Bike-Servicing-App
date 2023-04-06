@@ -22,27 +22,6 @@ const navConfig = [
     
   },
 
-  {
-    title: 'spare part',
-    path: '/',
-    
-  },
-  {
-    title: 'appointment',
-    path: '/',
-    
-  },
-  {
-    title: 'Report Generate',
-    path: '/',
-    
-  },
-  {
-    title: 'service',
-    path: '/',
-    
-  },
-
 ];
 
 export default navConfig;
