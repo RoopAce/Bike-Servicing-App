@@ -1,4 +1,4 @@
-import { Navigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 // import Container from "../../components/UI/Container";
 import React, { useState } from "react";
 import axios from "axios";
@@ -7,22 +7,18 @@ import roopImage from '../../assets/images/bike.jpg';
 const Login = () => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
-  const [redirect, setRedirect] = useState(false);
+  const navigate = useNavigate();
   async function handleLoginSubmit(e) {
     e.preventDefault();
     try {
       await axios.post('/login', {email,password});
       alert('Login Successful');
-      setRedirect(true);
+      navigate("/dashboard", { state: { userType: "Admin" } });
     } catch(e) {
       alert('Login failed');
     }
    
   }
-
-    if (redirect) {
-      return <Navigate to={'/dashboard'} />
-    }
 
   return (
     <section>
