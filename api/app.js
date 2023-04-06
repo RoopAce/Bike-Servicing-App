@@ -55,8 +55,7 @@ app.post('/register', async (req,res) => {
     
 });
  
-// //middlewares
-// app.use("/auth", authRoute);
+
 
 app.post('/login', async (req,res) => {
     const {email,password} = req.body;

@@ -8,8 +8,8 @@ import ThemeProvider from './theme';
 
 // components
 import ScrollToTop from './components/scroll-to-top';
-import Navbar from "./components/Navbar"
-import Footer from "./components/Footer"
+// import Navbar from "./components/Navbar"
+// import Footer from "./components/Footer"
 
 // import {
 //   createBrowserRouter,
@@ -65,9 +65,9 @@ export default function App() {
       <BrowserRouter>
         <ThemeProvider>
           <ScrollToTop />
-          <Navbar/>
+          {/* <Navbar/> */}
           <Router />  
-          <Footer/>
+          {/* <Footer/> */}
         </ThemeProvider>
       </BrowserRouter>
     </HelmetProvider>

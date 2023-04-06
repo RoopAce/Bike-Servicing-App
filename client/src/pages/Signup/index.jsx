@@ -2,6 +2,10 @@ import Container from "../../components/UI/Container";
 import { useState } from "react";
 import axios from "axios";
 
+
+import Navbar from "../../components/Navbar";
+import Footer from "../../components/Footer";
+
 const Signup = () => {
   const [name, setName] = useState('');
   const [email, setEmail] = useState('');
@@ -24,10 +28,11 @@ const Signup = () => {
     } catch (e) {
       alert("Registration failed. Please try again later");
     }
-
-
   }
+
   return (
+    <>
+    <Navbar/>
     <section className="min-h-screen flex items-center justify-center bg-gray-50 py-12 px-4 sm:px-6 lg:px-8">
       <Container>
 
@@ -230,6 +235,9 @@ const Signup = () => {
         
       </Container>
     </section>
+    <Footer/>
+    </>
+
   );
 };
 

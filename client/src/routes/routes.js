@@ -38,23 +38,23 @@ export default function Router() {
         index: true
     },
     {
-        path: "services",
+        path: "/services",
         element: <Services />
     },
     {
-        path: "appointment",
+        path: "/appointment",
         element: <Appointment />
     },
     {
-        path: "contact",
+        path: "/contact",
         element: <Contact />
     },
     {
-        path: "signup",
+        path: "/signup",
         element: <Signup />
     },
     {
-        path: "login",
+        path: "/login",
         element: <Login />
     },
     // {

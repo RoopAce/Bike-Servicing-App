@@ -1,8 +1,11 @@
+import  { useState } from "react";
 import { useNavigate } from "react-router-dom";
 // import Container from "../../components/UI/Container";
-import React, { useState } from "react";
 import axios from "axios";
 import roopImage from '../../assets/images/bike.jpg';
+
+import Navbar from "../../components/Navbar";
+import Footer from "../../components/Footer";
 
 const Login = () => {
   const [email, setEmail] = useState('');
@@ -21,6 +24,8 @@ const Login = () => {
   }
 
   return (
+    <>
+    <Navbar/>
     <section>
       
       <div className="flex items-center min-h-screen p-6 bg-white dark:bg-white-900">
@@ -177,6 +182,8 @@ const Login = () => {
         </div> */}
       
     </section>
+    <Footer/>
+    </>
   );
 };
 
