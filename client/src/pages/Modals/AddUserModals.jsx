@@ -70,7 +70,7 @@ export default function AddEmployeeModal({open,setOpen}) {
                 <Box sx={{ ...style }}>
                     <Typography sx={{ margin: '10px 0 0 0px', fontSize: '24px' }}>Add New User</Typography>
                     <PersonalInfo />
-                    <AccountDetail />
+                    
                     <ButtonBtn handleBigModalClose={handleClose}/> 
                 </Box>
                 
@@ -89,15 +89,15 @@ const PersonalInfo = () => {
                     <TextField label='Full Name' fullWidth />
                 </Grid>
                 <Grid item xs={6} >
-                    <TextField label='Branch' fullWidth />
+                    <TextField label='Birthdate' fullWidth />
                 </Grid>
                 <Grid item xs={6} >
                     <TextField label='Address' fullWidth />
                 </Grid>
-                <Grid item xs={7} >
+                <Grid item xs={5} >
                     <TextField label='Phone' type={'number'} fullWidth />
                 </Grid>
-                <Grid item xs={5} >
+                <Grid item xs={7} >
                     <TextField label='Email' type={'email'} fullWidth />
                 </Grid>
             </Grid>
@@ -106,25 +106,6 @@ const PersonalInfo = () => {
     )
 }
 
-const AccountDetail = () => {
-    return (
-        <>
-            <Typography component={'p'} mt={4} mb={2}>Account Details</Typography>
-            <Grid container spacing={2}>
-                <Grid item xs={12}>
-                    <TextField label='Username' sx={{ width: '50%' }} />
-                </Grid>
-                <Grid item xs={6} >
-                    <TextField label='Password' type={'password'} fullWidth />
-                </Grid>
-                <Grid item xs={6} >
-                    <TextField label='Confirm Password' type={'password'} fullWidth />
-                </Grid>
-
-            </Grid>
-        </>
-    )
-}
 
 const ButtonBtn = ({handleBigModalClose}) => {
     

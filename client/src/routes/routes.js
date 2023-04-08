@@ -22,6 +22,7 @@ import EmployeePage from '../pages/EmployeePage'
 import Blog from '../pages/BlogPage'
 
 import axios from "axios";
+import UserDashboardLayout from '../layouts/dashboard copy/DashboardLayout';
 
 // import NotFound from "./pages/NotFound";
 
@@ -66,6 +67,17 @@ export default function Router() {
       element: <DashboardLayout />,
       children: [
         { element: <Navigate to="/dashboard/app" />, index: true },
+        { path: 'app', element: <DashboardAppPage /> },
+        { path: 'user', element: <UserPage /> },
+        { path: 'employee', element: <EmployeePage /> },
+        // { path: 'blog', element: <BlogPage /> },
+      ],
+    },
+    {
+      path: '/userdashboard',
+      element: <UserDashboardLayout/>,
+      children: [
+        { element: <Navigate to="/userdashboard/app" />, index: true },
         { path: 'app', element: <DashboardAppPage /> },
         { path: 'user', element: <UserPage /> },
         { path: 'employee', element: <EmployeePage /> },

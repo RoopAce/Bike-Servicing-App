@@ -7,7 +7,7 @@ import Navbar from "../../components/Navbar";
 import Footer from "../../components/Footer";
 import RepairService from "../../components/RepairServices";
 import GetServices from '../../components/GetServices';
-import Login from '../Login/index'
+
 
 const Home = () => {
     return (
@@ -15,13 +15,9 @@ const Home = () => {
         <Navbar/>
             <Hero />
             <ChooseUs />
-            <MakeAppointment />
+            
             <MoreInfo />
             <RepairService />
-            
-            <GetServices/>
-
-            <Login/>
          <Footer/>
         </>
 
