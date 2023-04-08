@@ -38,6 +38,7 @@ const TABLE_HEAD = [
   { id: 'name', label: 'Name', alignRight: false },
   { id: 'address', label: 'Address', alignRight: false },
   { id: 'phone', label: 'Phone', alignRight: false },
+  { id: 'birthdate', label: 'Birthdate', alignRight: false },
   { id: 'email', label: 'Email', alignRight: false },
   { id: '' },
 ];
@@ -187,7 +188,7 @@ const handleOpenAddUser = () => {setOpenAddUser(true)};
                 />
                 <TableBody>
                   {filteredUsers.slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage).map((row) => {
-                    const { id, name, phone, email, address, avatarUrl,  } = row;
+                    const { id, name, phone,birthdate, email, address, avatarUrl,  } = row;
                     const selectedUser = selected.indexOf(name) !== -1;
 
                     return (
@@ -208,6 +209,8 @@ const handleOpenAddUser = () => {setOpenAddUser(true)};
                         <TableCell align="left">{address}</TableCell>
 
                         <TableCell align="left">{phone}</TableCell>
+
+                        <TableCell align="left">{birthdate}</TableCell>
 
                         <TableCell align="left">{email}</TableCell>
 

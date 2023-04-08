@@ -165,7 +165,7 @@ const handleOpenAddUser = () => {setOpenAddUser(true)};
           <Typography variant="h4" gutterBottom>
             User
           </Typography>
-          <Button variant="contained" startIcon={<Iconify icon="eva:plus-fill" />} onClick={handleOpenAddUser}>
+          <Button variant="contained"  startIcon={<Iconify icon="eva:plus-fill" />} onClick={handleOpenAddUser}>
             New User
           </Button>
         </Stack>

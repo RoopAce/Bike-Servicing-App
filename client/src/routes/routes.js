@@ -3,10 +3,17 @@ import { Navigate, useRoutes } from 'react-router-dom';
 // layouts
 import DashboardLayout from '../layouts/dashboard';
 import SimpleLayout from '../layouts/simple';
+import UserDashboardLayout from '../layouts/dashboard copy/UserDashboardLayout';
+import EmpDashboardLayout from '../layouts/dashboard copy 2/EmpDashboardLayout'
 
-// pages
+// pages for UserDashboard
 import DashboardAppPage from '../pages/DashboardAppPage';
+import UserAppoint from '../pages/Userdashboard/UserAppoint';
+import UserService from '../pages/Userdashboard/UserService';
+import UserSparePart from '../pages/Userdashboard/UserSparePart';
 
+// pages for employee 
+import EmpDashboard from '../pages/Employeedashboard/EmpDashboard';
 // ----------------------------------------------------------------------
 
 import Home from "../pages/Home";
@@ -19,12 +26,15 @@ import Login from "../pages/Login";
 // import Logout from "./pages/Logout";
 import UserPage from '../pages/UserPage';
 import EmployeePage from '../pages/EmployeePage'
-import Blog from '../pages/BlogPage'
+
 
 import axios from "axios";
-import UserDashboardLayout from '../layouts/dashboard copy/DashboardLayout';
 
+import NotFound from '../pages/NotFound/'
 // import NotFound from "./pages/NotFound";
+import DashboardPage from './../pages/Userdashboard/DashboardPage';
+import UserOrder from '../pages/Userdashboard/UserOrder';
+
 
 axios.defaults.baseURL = 'http://localhost:4000';
 axios.defaults.withCredentials = true;
@@ -77,10 +87,25 @@ export default function Router() {
       path: '/userdashboard',
       element: <UserDashboardLayout/>,
       children: [
-        { element: <Navigate to="/userdashboard/app" />, index: true },
-        { path: 'app', element: <DashboardAppPage /> },
-        { path: 'user', element: <UserPage /> },
-        { path: 'employee', element: <EmployeePage /> },
+        { element: <Navigate to="/userdashboard/userdashboard" />, index: true },
+        { path: 'userdashboard', element: <DashboardPage /> },
+        { path: 'userservice', element: <UserService /> },
+        { path: 'userappointment', element: <UserAppoint /> },
+        { path: 'userorder', element: <UserOrder /> },
+        { path: 'usersparepart', element: <UserSparePart /> },
+        // { path: 'blog', element: <BlogPage /> },
+      ],
+    },
+    {
+      path: '/empdashboard',
+      element: <EmpDashboardLayout/>,
+      children: [
+        { element: <Navigate to="/empdashboard/empdashboard" />, index: true },
+        { path: 'empdashboard', element: <EmpDashboard /> },
+        // { path: 'userservice', element: <UserService /> },
+        // { path: 'userappointment', element: <UserAppoint /> },
+        // { path: 'userorder', element: <UserOrder /> },
+        // { path: 'usersparepart', element: <UserSparePart /> },
         // { path: 'blog', element: <BlogPage /> },
       ],
     },
@@ -88,8 +113,8 @@ export default function Router() {
       element: <SimpleLayout />,
       children: [
         { element: <Navigate to="/dashboard/app" />, index: true },
-        // { path: '404', element: <Page404 /> },
-        // { path: '*', element: <Navigate to="/404" /> },
+        { path: '404', element: <NotFound /> },
+        
       ],
     },
     {
