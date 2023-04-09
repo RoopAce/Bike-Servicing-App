@@ -14,6 +14,7 @@ import UserSparePart from '../pages/Userdashboard/UserSparePart';
 
 // pages for employee 
 import EmpDashboard from '../pages/Employeedashboard/EmpDashboard';
+import EmpServiceOrder from '../pages/Employeedashboard/EmpServiceOrder';
 // ----------------------------------------------------------------------
 
 import Home from "../pages/Home";
@@ -102,7 +103,7 @@ export default function Router() {
       children: [
         { element: <Navigate to="/empdashboard/empdashboard" />, index: true },
         { path: 'empdashboard', element: <EmpDashboard /> },
-        // { path: 'userservice', element: <UserService /> },
+        { path: 'emporder', element: <EmpServiceOrder /> },
         // { path: 'userappointment', element: <UserAppoint /> },
         // { path: 'userorder', element: <UserOrder /> },
         // { path: 'usersparepart', element: <UserSparePart /> },

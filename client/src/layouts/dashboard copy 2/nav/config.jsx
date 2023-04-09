@@ -12,8 +12,8 @@ const navConfig = [
     
   },
   {
-    title: 'user',
-    path: '/dashboard/user',
+    title: 'order',
+    path: '/dashboard/emporder',
     
   },
   {
