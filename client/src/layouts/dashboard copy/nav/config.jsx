@@ -8,27 +8,32 @@ import SvgColor from '../../../components/svg-color';
 const navConfig = [
   {
     title: 'dashboard',
-    path: '/dashboard/userdashboard',
+    path: '/userdashboard/userdashboard',
+    
+  },
+  {
+    title: 'Emergency',
+    path: '/userdashboard/useremergency',
     
   },
   {
     title: 'service',
-    path: '/dashboard/userservice',
+    path: '/userdashboard/userservice',
     
   },
   {
     title: 'appointment',
-    path: '/dashboard/userappointment',
+    path: '/userdashboard/userappointment',
     
   },
   {
     title: 'spare part',
-    path: '/dashboard/usersparepart',
+    path: '/userdashboard/usersparepart',
     
   },
   {
     title: 'order',
-    path: '/dashboard/userorder',
+    path: '/userdashboard/userorder',
     
   },
 

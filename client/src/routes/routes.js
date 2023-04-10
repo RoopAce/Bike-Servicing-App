@@ -10,11 +10,13 @@ import EmpDashboardLayout from '../layouts/dashboard copy 2/EmpDashboardLayout'
 import DashboardAppPage from '../pages/DashboardAppPage';
 import UserAppoint from '../pages/Userdashboard/UserAppoint';
 import UserService from '../pages/Userdashboard/UserService';
+import UserEmergency from '../pages/Userdashboard/UserEmergency';
 import UserSparePart from '../pages/Userdashboard/UserSparePart';
 
 // pages for employee 
 import EmpDashboard from '../pages/Employeedashboard/EmpDashboard';
 import EmpServiceOrder from '../pages/Employeedashboard/EmpServiceOrder';
+import EmpAddService from '../pages/Employeedashboard/EmpAddService'
 // ----------------------------------------------------------------------
 
 import Home from "../pages/Home";
@@ -90,11 +92,12 @@ export default function Router() {
       children: [
         { element: <Navigate to="/userdashboard/userdashboard" />, index: true },
         { path: 'userdashboard', element: <DashboardPage /> },
+        { path: 'useremergency', element: <UserEmergency /> },
         { path: 'userservice', element: <UserService /> },
         { path: 'userappointment', element: <UserAppoint /> },
         { path: 'userorder', element: <UserOrder /> },
         { path: 'usersparepart', element: <UserSparePart /> },
-        // { path: 'blog', element: <BlogPage /> },
+        
       ],
     },
     {
@@ -104,6 +107,7 @@ export default function Router() {
         { element: <Navigate to="/empdashboard/empdashboard" />, index: true },
         { path: 'empdashboard', element: <EmpDashboard /> },
         { path: 'emporder', element: <EmpServiceOrder /> },
+        { path: 'addservice', element: <EmpAddService /> },
         // { path: 'userappointment', element: <UserAppoint /> },
         // { path: 'userorder', element: <UserOrder /> },
         // { path: 'usersparepart', element: <UserSparePart /> },

@@ -75,17 +75,19 @@ export default function EmpServiceOrder() {
   return (
     <>
       {
-      
-            <Container>
-              <Box className="col main pt-5 mt-3">
-                <Typography variant="h3" sx={{ mb: 3 }}>
-                  Order
-                </Typography>
-                <Box sx={{ mb: 3 }}>
-                  <Typography variant="h5" sx={{ mb: 2 }}>
-                    Add Order
-                  </Typography>
-                  <form>
+
+        <Container>
+          <Box className="col main pt-5 mt-3">
+            <Typography variant="h3" sx={{ mb: 3 }}>
+              Order
+            </Typography>
+            <Box sx={{ mb: 3 }}>
+              <Typography variant="h5" sx={{ mb: 2 }}>
+                Add Order
+              </Typography>
+              <form>
+                <Grid container spacing={2}>
+                  <Grid item xs={12} sm={6}>
                     <TextField
                       name="name"
                       label="Name"
@@ -95,6 +97,8 @@ export default function EmpServiceOrder() {
                       onChange={handleInputChange}
                       sx={{ mb: 2 }}
                     />
+                  </Grid>
+                  <Grid item xs={12} sm={6}>
                     <TextField
                       name="address"
                       label="Address"
@@ -104,6 +108,8 @@ export default function EmpServiceOrder() {
                       onChange={handleInputChange}
                       sx={{ mb: 2 }}
                     />
+                  </Grid>
+                  <Grid item xs={12} sm={6}>
                     <TextField
                       name="number"
                       label="Number"
@@ -113,6 +119,8 @@ export default function EmpServiceOrder() {
                       onChange={handleInputChange}
                       sx={{ mb: 2 }}
                     />
+                  </Grid>
+                  <Grid item xs={12} sm={6}>
                     <TextField
                       name="sparepart"
                       label="Spare Part"
@@ -122,6 +130,8 @@ export default function EmpServiceOrder() {
                       onChange={handleInputChange}
                       sx={{ mb: 2 }}
                     />
+                  </Grid>
+                  <Grid item xs={12}>
                     <TextField
                       name="location"
                       label="Location"
@@ -131,70 +141,73 @@ export default function EmpServiceOrder() {
                       onChange={handleInputChange}
                       sx={{ mb: 2 }}
                     />
-                    <Button
-                      variant="contained"
-                      color="primary"
-                      onClick={isEditing ? handleUpdateCustomer : handleAddCustomer}
-                      sx={{ mr: 2 }}
-                    >
-                      {isEditing ? "Update" : "Add"}
-                    </Button>
-                    {isEditing && (
-                      <Button
-                        variant="outlined"
-                        onClick={() => {
-                          setCurrentCustomer(initialFormState);
-                          setIsEditing(false);
-                        }}
-                      >
-                        Cancel
-                      </Button>
-                    )}
-                  </form>
-                </Box>
-                <Box>
-                  <Typography variant="h5" sx={{ mb: 2 }}>
-                    Customers
-                  </Typography>
-                  <TableContainer>
-                    <Table>
-                      <TableHead>
-                        <TableRow>
-                          <TableCell>Name</TableCell>
-                          <TableCell>Address</TableCell>
-                          <TableCell>Number</TableCell>
-                          <TableCell>Spare Part</TableCell>
-                          <TableCell>Location</TableCell>
-                          <TableCell>Action</TableCell>
-                        </TableRow>
-                      </TableHead>
-                      <TableBody>
-                        {customers.map((customer, index) => (
-                          <TableRow key={index}>
-                            <TableCell>{customer.name}</TableCell>
-                            <TableCell>{customer.address}</TableCell>
-                            <TableCell>{customer.number}</TableCell>
-                            <TableCell>{customer.sparepart}</TableCell>
-                            <TableCell>{customer.location}</TableCell>
+                  </Grid>
+                </Grid>
+                <Button
+                  variant="contained"
+                  color="primary"
+                  onClick={isEditing ? handleUpdateCustomer : handleAddCustomer}
+                  sx={{ mr: 2 }}
+                >
+                  {isEditing ? "Update" : "Add"}
+                </Button>
+                {isEditing && (
+                  <Button
+                    variant="outlined"
+                    onClick={() => {
+                      setCurrentCustomer(initialFormState);
+                      setIsEditing(false);
+                    }}
+                  >
+                    Cancel
+                  </Button>
+                )}
+              </form>
+            </Box>
+          </Box>
+          <Box>
+            <Typography variant="h5" sx={{ mb: 2 }}>
+              Customers
+            </Typography>
+            <TableContainer>
+              <Table>
+                <TableHead>
+                  <TableRow>
+                    <TableCell>Name</TableCell>
+                    <TableCell>Address</TableCell>
+                    <TableCell>Number</TableCell>
+                    <TableCell>Spare Part</TableCell>
+                    <TableCell>Location</TableCell>
+                    <TableCell>Action</TableCell>
+                  </TableRow>
+                </TableHead>
+                <TableBody>
+                  {customers.map((customer, index) => (
+                    <TableRow key={index}>
+                      <TableCell>{customer.name}</TableCell>
+                      <TableCell>{customer.address}</TableCell>
+                      <TableCell>{customer.number}</TableCell>
+                      <TableCell>{customer.sparepart}</TableCell>
+                      <TableCell>{customer.location}</TableCell>
 
-                            <TableCell>
-                              <IconButton aria-label="edit" onClick={() => handleEdit(index)}>
-                                <MdEdit />
-                              </IconButton>
-                              <IconButton aria-label="delete" onClick={() => handleDelete(index)}>
-                                <MdDelete />
-                              </IconButton>
-                            </TableCell>
-                          </TableRow>
-                        ))}
-                      </TableBody>
+                      <TableCell>
+                        <IconButton aria-label="edit" onClick={() => handleEdit(index)}>
+                          <MdEdit />
+                        </IconButton>
+                        <IconButton aria-label="delete" onClick={() => handleDelete(index)}>
+                          <MdDelete />
+                        </IconButton>
+                      </TableCell>
+                    </TableRow>
+                  ))}
+                </TableBody>
 
-                    </Table>
-                  </TableContainer>
-                </Box>
-              </Box>
-            </Container>
-          
+              </Table>
+            </TableContainer>
+          </Box>
+
+        </Container >
+
 
       }
 
