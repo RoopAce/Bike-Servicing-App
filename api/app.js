@@ -9,12 +9,14 @@ const app = express();
 // const auth = require ('./models/auth.js')
 const bcryptSalt = bcrypt.genSaltSync(10);
 const jwtSecret = 'asjdasdkasd';
+const cookieParser = require('cookie-parser');
 // require("./src/db/conn");
 
 // const port = process.env.PORT || 3000;
 
 
 app.use(express.json());
+app.use(cookieParser());
 
 app.use(cors({
     credentials: true,
@@ -65,7 +67,10 @@ app.post('/login', async (req,res) => {
         if (passOk) {
             jwt.sign({email:userDoc.email, id:userDoc._id}, jwtSecret, {}, (err,token) => {
                 if (err) throw err;
-                res.cookie('token', token).json('pass ok');
+                const cookieData = {token: token, userType: userDoc.userType};
+                res.cookie('userData', JSON.stringify(cookieData)).json('pass ok');
+
+                //res.cookie('token', token).json('pass ok');
             });
             
         } else {

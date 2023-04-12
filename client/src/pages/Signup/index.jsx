@@ -1,6 +1,7 @@
 import Container from "../../components/UI/Container";
 import { useState } from "react";
 import axios from "axios";
+import { useNavigate } from "react-router-dom";
 
 
 import Navbar from "../../components/Navbar";
@@ -13,6 +14,7 @@ const Signup = () => {
   const [password, setPassword] = useState('');
   const [confirmPassword, setConfirmPassword] = useState('');
   const [userType, setUserType] = useState('');
+  const navigate = useNavigate();
   async function registerUser(e) {
     e.preventDefault();
     try {
@@ -24,6 +26,7 @@ const Signup = () => {
         userType,
       });
       alert("Registration successful. Now you can login");
+      navigate("/login");
 
     } catch (e) {
       alert("Registration failed. Please try again later");
@@ -149,7 +152,7 @@ const Signup = () => {
                     >
                       <option value="">Select user type</option>
                       <option value="admin">Admin</option>
-                      <option value="vendor">Employee</option>
+                      <option value="employee">Employee</option>
                       <option value="user">User</option>
                     </select>
                     <div className="absolute inset-y-0 right-0 flex items-center px-2 pointer-events-none">
