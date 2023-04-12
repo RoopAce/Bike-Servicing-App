@@ -1,7 +1,6 @@
 import React from 'react';
 import { Box, Button, Typography, Container, Stack } from '@mui/material';
 import { Helmet } from 'react-helmet-async';
-import roop from '../../assets/images/roop.jpg'
 export default function UserEmergency() {
   return (
     <>
