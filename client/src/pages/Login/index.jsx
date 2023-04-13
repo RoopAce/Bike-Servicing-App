@@ -22,13 +22,16 @@ const Login = () => {
       console.log(userType);
 
       console.log(cookies);
-      alert('Login Successful');
+      
       if (userType === 'admin') {
+        alert('Login Successful as an Admin');
         navigate("/dashboard", { state: { userType: "Admin" } });
       } else if (userType === 'user') {
+        alert('Login Successful as a User');
         navigate("/userdashboard", { state: { userType: "User" } });
       }
-      else if(userType == "employee"){
+      else if(userType === "employee"){
+        alert('Login Successful as an Employee');
         navigate("/empdashboard", { state: { userType: "Employee" } });
       }
       
