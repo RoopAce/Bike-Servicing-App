@@ -1,6 +1,5 @@
 import { Helmet } from 'react-helmet-async';
 import { filter } from 'lodash';
-import { sentenceCase } from 'change-case';
 import { useState } from 'react';
 // @mui
 import {
@@ -18,19 +17,22 @@ import {
   TableCell,
   Container,
   Typography,
-  IconButton,
+  IconButton, TableHead,
   TableContainer,
   TablePagination,
 } from '@mui/material';
 // components
-import Label from '../components/label';
 import Iconify from '../components/iconify';
 import Scrollbar from '../components/scrollbar';
+
 // sections
 import { UserListHead, UserListToolbar } from '../sections/@dashboard/user';
 // mock
 import USERLIST from '../_mock/user';
 import AddUserModals from './Modals/AddUserModals';
+import { Box } from "@mui/material";
+import { TextField, } from '@mui/material';
+import { MdEdit, MdDelete } from 'react-icons/md';
 
 // ----------------------------------------------------------------------
 
@@ -43,6 +45,7 @@ const TABLE_HEAD = [
   { id: '' },
 ];
 
+const initialFormState = { name: "", address: "", number: "" };
 // ----------------------------------------------------------------------
 
 function descendingComparator(a, b, orderBy) {
@@ -149,6 +152,38 @@ const handleOpenAddUser = () => {setOpenAddUser(true)};
     setFilterName(event.target.value);
   };
 
+  const [customers, setCustomers] = useState([]);
+  const [currentCustomer, setCurrentCustomer] = useState(initialFormState);
+  const [isEditing, setIsEditing] = useState(false);
+
+  const handleInputChange = (event) => {
+    const { name, value } = event.target;
+    setCurrentCustomer({ ...currentCustomer, [name]: value });
+  };
+
+  const handleAddCustomer = () => {
+    setCustomers([...customers, currentCustomer]);
+    setCurrentCustomer(initialFormState);
+  };
+
+  const handleDelete = (index) => {
+    setCustomers(customers.filter((customer, i) => i !== index));
+  };
+
+  const handleEdit = (index) => {
+    setIsEditing(true);
+    setCurrentCustomer(customers[index]);
+  };
+
+  const handleUpdateCustomer = () => {
+    const updatedCustomers = customers.map((customer, i) =>
+      i === customers.indexOf(currentCustomer) ? currentCustomer : customer
+    );
+    setCustomers(updatedCustomers);
+    setCurrentCustomer(initialFormState);
+    setIsEditing(false);
+  };
+
   const emptyRows = page > 0 ? Math.max(0, (1 + page) * rowsPerPage - USERLIST.length) : 0;
 
   const filteredUsers = applySortFilter(USERLIST, getComparator(order, orderBy), filterName);
@@ -166,7 +201,7 @@ const handleOpenAddUser = () => {setOpenAddUser(true)};
           <Typography variant="h4" gutterBottom>
             User
           </Typography>
-          <Button variant="contained" startIcon={<Iconify icon="eva:plus-fill" />} onClick={handleOpenAddUser}>
+          <Button variant="outlined" startIcon={<Iconify icon="eva:plus-fill" />} onClick={handleOpenAddUser}>
             New User
           </Button>
         </Stack>
@@ -299,6 +334,102 @@ const handleOpenAddUser = () => {setOpenAddUser(true)};
         </MenuItem>
       </Popover>
       <AddUserModals open={openAddUser} setOpen={setOpenAddUser} />
+
+      <Container>
+              <Box className="col main pt-5 mt-3">
+                <Typography variant="h3" sx={{ mb: 3 }}>
+                  Dashboard
+                </Typography>
+                <Box sx={{ mb: 3 }}>
+                  <Typography variant="h5" sx={{ mb: 2 }}>
+                    Add Customer
+                  </Typography>
+                  <form>
+                    <TextField
+                      name="name"
+                      label="Name"
+                      variant="outlined"
+                      fullWidth
+                      value={currentCustomer.name}
+                      onChange={handleInputChange}
+                      sx={{ mb: 2 }}
+                    />
+                    <TextField
+                      name="address"
+                      label="Address"
+                      variant="outlined"
+                      fullWidth
+                      value={currentCustomer.address}
+                      onChange={handleInputChange}
+                      sx={{ mb: 2 }}
+                    />
+                    <TextField
+                      name="number"
+                      label="Number"
+                      variant="outlined"
+                      fullWidth
+                      value={currentCustomer.number}
+                      onChange={handleInputChange}
+                      sx={{ mb: 2 }}
+                    />
+                    <Button
+                      variant="contained"
+                      color="primary"
+                      onClick={isEditing ? handleUpdateCustomer : handleAddCustomer}
+                      sx={{ mr: 2 }}
+                    >
+                      {isEditing ? "Update" : "Add"}
+                    </Button>
+                    {isEditing && (
+                      <Button
+                        variant="outlined"
+                        onClick={() => {
+                          setCurrentCustomer(initialFormState);
+                          setIsEditing(false);
+                        }}
+                      >
+                        Cancel
+                      </Button>
+                    )}
+                  </form>
+                </Box>
+                <Box>
+                  <Typography variant="h5" sx={{ mb: 2 }}>
+                    Customers
+                  </Typography>
+                  <TableContainer>
+                    <Table>
+                      <TableHead>
+                        <TableRow>
+                          <TableCell>Name</TableCell>
+                          <TableCell>Address</TableCell>
+                          <TableCell>Number</TableCell>
+                          <TableCell>Action</TableCell>
+                        </TableRow>
+                      </TableHead>
+                      <TableBody>
+                        {customers.map((customer, index) => (
+                          <TableRow key={index}>
+                            <TableCell>{customer.name}</TableCell>
+                            <TableCell>{customer.address}</TableCell>
+                            <TableCell>{customer.number}</TableCell>
+                            <TableCell>
+                              <IconButton aria-label="edit" onClick={() => handleEdit(index)}>
+                                <MdEdit />
+                              </IconButton>
+                              <IconButton aria-label="delete" onClick={() => handleDelete(index)}>
+                                <MdDelete />
+                              </IconButton>
+                            </TableCell>
+                          </TableRow>
+                        ))}
+                      </TableBody>
+
+                    </Table>
+                  </TableContainer>
+                </Box>
+              </Box>
+            </Container>
     </>
   );
 }

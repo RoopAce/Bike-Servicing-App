@@ -10,24 +10,39 @@ const app = express();
 const bcryptSalt = bcrypt.genSaltSync(10);
 const jwtSecret = 'asjdasdkasd';
 const cookieParser = require('cookie-parser');
+const morgan = require("morgan");
 // require("./src/db/conn");
-
+require("dotenv").config()
 // const port = process.env.PORT || 3000;
 
 
+
+const db = process.env.MONGOURI;
+
+let port = process.env.PORT;
+
+if (port == null || port == "") {
+    port = process.env.SERVER_PORT;
+}
+mongoose.set('strictQuery', true);
 app.use(express.json());
 app.use(cookieParser());
+app.use(morgan("tiny"))
+
 
 app.use(cors({
     credentials: true,
     origin: 'http://localhost:3000',
 }));
 
-mongoose.connect("mongodb://127.0.0.1:27017");
-// const static_path = path.join(__dirname, "../public" );
-// app.use(express.static(static_path));
-// app.set("view ")
-
+mongoose.connect(db, {
+    useNewUrlParser: true,
+    useUnifiedTopology: true
+}).then(() => {
+    console.log('MongoDB connected');
+}).catch((err) => {
+    console.log('MongoDB connection error', err);
+});
 
 
 app.get("/test", (req, res) => {
@@ -35,8 +50,8 @@ app.get("/test", (req, res) => {
 });
 
 
-app.post('/register', async (req,res) => {
-    const {name,email,phoneNumber,password,userType} = req.body;
+app.post('/register', async (req, res) => {
+    const { name, email, phoneNumber, password, userType } = req.body;
 
     try {
         console.log(userType)
@@ -44,35 +59,35 @@ app.post('/register', async (req,res) => {
             name,
             email,
             phoneNumber,
-            password:bcrypt.hashSync(password, bcryptSalt),
+            password: bcrypt.hashSync(password, bcryptSalt),
             userType,
         });
 
         res.json(userDoc);
-    }catch (e){
+    } catch (e) {
         res.status(422).json(e);
     }
-    
 
-    
+
+
 });
- 
 
 
-app.post('/login', async (req,res) => {
-    const {email,password} = req.body;
+
+app.post('/login', async (req, res) => {
+    const { email, password } = req.body;
     const userDoc = await User.findOne({ email });
     if (userDoc) {
         const passOk = bcrypt.compareSync(password, userDoc.password)
         if (passOk) {
-            jwt.sign({email:userDoc.email, id:userDoc._id}, jwtSecret, {}, (err,token) => {
+            jwt.sign({ email: userDoc.email, id: userDoc._id }, jwtSecret, {}, (err, token) => {
                 if (err) throw err;
-                const cookieData = {token: token, userType: userDoc.userType};
+                const cookieData = { token: token, userType: userDoc.userType };
                 res.cookie('userData', JSON.stringify(cookieData)).json('pass ok');
 
                 //res.cookie('token', token).json('pass ok');
             });
-            
+
         } else {
             res.status(422).json('pass not ok');
         }
@@ -81,12 +96,8 @@ app.post('/login', async (req,res) => {
     }
 });
 
-// //logout
-// app.get("/logout", (req, res) => {
-//     res.json("hello my logout page");
-//     res.clearCookie('jwtoken', { path: '/'})
-//     res.status(200).send('user Logout');
-// });
 
-app.listen(4000);
 
+app.listen(port, () => {
+    console.log(`server is up and running at port ${port} successfully `);
+});

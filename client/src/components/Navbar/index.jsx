@@ -13,7 +13,7 @@ const Navbar = () => {
   const handleToggle = () => {
     return setToggleNav((prevValue) => !prevValue);
   };
-  
+
   return (
     <nav className="shadow-lg sticky z-[99]">
       <Container className="py-[20px] px-[8px] flex justify-between items-center">
@@ -39,16 +39,16 @@ const Navbar = () => {
               <NavLink to="/appointment">Appointment</NavLink>
             </li>
             <li>
-              
+
               <NavLink to="/login">Login</NavLink>
             </li>
             <li>
-              <NavLink to="/signup">Signup</NavLink>
+              <NavLink className="bg-black text-white rounded-md p-3" to="/signup">Signup</NavLink>
             </li>
             {/* <li>
               <NavLink to="logout">Logout</NavLink>
             </li> */}
-            
+
           </ul>
         </div>
 

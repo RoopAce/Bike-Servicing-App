@@ -1,9 +1,9 @@
-import mypicture from '../../../assets/images/hero-bg-1.jpg';
+import mypicture1 from '../../../assets/images/hero-bg-1.jpg';
 
 
 const ServiceData = [
-  { id: 1, desc: "Periodic Service", imgSrc: "" },
-  { id: 2, desc: "General Repairs", imgSrc: {mypicture} },
+  { id: 1, desc: "Periodic Service", imgSrc: { mypicture1 } },
+  { id: 2, desc: "General Repairs", imgSrc: { mypicture1 } },
   { id: 3, desc: "Batteries", imgSrc: "" },
   { id: 4, desc: "Engine Work", imgSrc: "" },
   { id: 5, desc: "Insurance Services", imgSrc: "" },

@@ -4,7 +4,7 @@ import ServiceData from "../data/ServiceData";
 
 const Content = () => {
 
-    // const { fetchedData } = useFetch(url);
+  // const { fetchedData } = useFetch(url);
   return (
     <>
       <h2 className="section-title">Two Wheeler Services</h2>

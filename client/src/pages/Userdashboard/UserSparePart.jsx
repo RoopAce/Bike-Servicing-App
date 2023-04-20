@@ -1,85 +1,207 @@
-import { useState } from 'react';
+import React, { useState } from 'react';
 import { Helmet } from 'react-helmet-async';
-
 import DeleteIcon from '@mui/icons-material/Delete';
-import {
-  Button,
-  Card,
-  CardActionArea,
-  CardActions,
-  CardContent,
-  CardMedia,
-  Container,
-  ListItemSecondaryAction, IconButton,
-  List,
-  ListItem,
-  ListItemText,
-  Typography
-} from '@mui/material';
 import AddShoppingCartIcon from '@mui/icons-material/AddShoppingCart';
+import {
+Button,
+Card,
+CardActionArea,
+CardActions,
+CardContent,
+CardMedia,
+Container,
+IconButton,
+List,
+ListItem,
+ListItemSecondaryAction,
+ListItemText,
+Typography
+} from '@mui/material';
 import tire from '../../assets/images/tire.jpg';
 
+const products = [
+{
+name: 'The Catalyzer',
+image: 'https://dummyimage.com/420x260',
+category: 'CATEGORY',
+price: '$16.00',
+},
+{
+name: 'Shooting Stars',
+image: 'https://dummyimage.com/421x261',
+category: 'CATEGORY',
+price: '$21.15',
+},
+{
+name: 'Neptune',
+image: 'https://dummyimage.com/422x262',
+category: 'CATEGORY',
+price: '$12.00',
+},
+{
+name: 'The 400 Blows',
+image: 'https://dummyimage.com/423x263',
+category: 'CATEGORY',
+price: '$18.40',
+},
+{
+name: 'The Catalyzer',
+image: 'https://dummyimage.com/424x264',
+category: 'CATEGORY',
+price: '$16.00',
+},
+{
+name: 'Shooting Stars',
+image: 'https://dummyimage.com/425x265',
+category: 'CATEGORY',
+price: '$21.15',
+},
+{
+name: 'Neptune',
+image: 'https://dummyimage.com/427x267',
+category: 'CATEGORY',
+price: '$12.00',
+},
+];
+
 export default function UserSparePart() {
-  const [cartItems, setCartItems] = useState([]);
+const [cartItems, setCartItems] = useState([]);
 
+const handleDelete = (index) => {
+setCartItems(cartItems.filter((_, i) => i !== index));
+};
 
-    const handleDelete = (index) => {
-      setCartItems(cartItems.filter((_, i) => i !== index));
-    };
+const availableParts = [
+{ name: 'Tire', price: 200, img: tire },
+{ name: 'Break', price: 250, img: tire },
+{ name: 'Clutch', price: 90, img: tire },
+];
 
-  
-  const availableParts = [
-    { name: 'Tire', price: 200, img: 'https://via.placeholder.com/150' },
-    { name: 'Break', price: 250, img: 'https://via.placeholder.com/150' },
-    { name: 'Clutch', price: 90, img: 'https://via.placeholder.com/150' },
-  ];
+const addToCart = (part) => {
+setCartItems([...cartItems, part]);
+};
 
-  const addToCart = (part) => {
-    setCartItems([...cartItems, part]);
-  };
+const totalCost = cartItems.reduce((total, part) => total + part.price, 0);
 
-  const totalCost = cartItems.reduce((total, part) => total + part.price, 0);
+return (
+<>
+<Helmet>
+<title>RoopAce</title>
+</Helmet>
+<Container>
+    <Typography variant="h4" gutterBottom>
+      Spare Part
+    </Typography>
 
-  return (
-    <>
-      <Helmet>
-        <title>RoopAce</title>
-      </Helmet>
+    <section class="text-gray-600 body-font">
+      <div class="container px-1 py-11 mx-auto">
+        <div class="flex flex-wrap -m-4">
+    
+             <div class="lg:w-1/4 md:w-1/2 p-4 w-full">
+             <Card>
+               <CardActionArea>
+                 <CardMedia
+                   component="img"
+                   image={tire}
+                   alt="Tire"
+                   height="200"
+                 />
+                 <CardContent>
+                   <Typography gutterBottom variant="h5" component="h2">
+                     Tire
+                   </Typography>
+                   <Typography variant="body2" color="textSecondary" component="p">
+                     High quality tire with long durability.
+                   </Typography>
+                   <Typography variant="body1" color="textPrimary" component="h4">
+                     Price: $200
+                   </Typography>
+                 </CardContent>
+               </CardActionArea>
+               <CardActions>
+                 <Button
+                   size="small"
+                   color="primary"
+                   startIcon={<AddShoppingCartIcon />}
+                   onClick={() => addToCart(availableParts[0])}
+                 >
+                   Add to cart
+                 </Button>
+               </CardActions>
+             </Card>
+           </div>
+           <div class="lg:w-1/4 md:w-1/2 p-4 w-full">
+             <Card>
+               <CardActionArea>
+                 <CardMedia
+                   component="img"
+                   image={tire}
+                   alt="Break"
+                   height="200"
+                 />
+                 <CardContent>
+                   <Typography gutterBottom variant="h5" component="h2">
+                     Break
+                   </Typography>
+                   <Typography variant="body2" color="textSecondary" component="p">
+                     High quality break pad for smooth break.
+                   </Typography>
+                   <Typography variant="body1" color="textPrimary" component="h4">
+                     Price: $250
+                   </Typography>
+                 </CardContent>
+               </CardActionArea>
+               <CardActions>
+                 <Button
+                   size="small"
+                   color="primary"
+                   startIcon={<AddShoppingCartIcon />}
+                   onClick={() => addToCart(availableParts[1])}
+                 >
+                   Add to cart
+                 </Button>
+               </CardActions>
+             </Card>
+           </div>
+           <div class="lg:w-1/4 md:w-1/2 p-4 w-full">
+             <Card>
+               <CardActionArea>
+                 <CardMedia
+                   component="img"
+                   image={tire}
+                   alt="Clutch"
+                   height="200"
+                 />
+                 <CardContent>
+                   <Typography gutterBottom variant="h5" component="h2">
+                     Clutch
+                   </Typography>
+                   <Typography variant="body2" color="textSecondary" component="p">
+                     Durable clutch for high performance.
+                   </Typography>
+                   <Typography variant="body1" color="textPrimary" component="h4">
+                     Price: $90
+                   </Typography>
+                 </CardContent>
+               </CardActionArea>
+               <CardActions>
+                 <Button
+                   size="small"
+                   color="primary"
+                   startIcon={<AddShoppingCartIcon />}
+                   onClick={() => addToCart(availableParts[2])}
+                 >
+                   Add to cart
+                 </Button>
+               </CardActions>
+             </Card>
+           </div>
+         </div>
+       </div>
+       </section>
+       </Container>
 
-      <Container>
-        <Typography variant="h4" gutterBottom>
-          Spare Part
-        </Typography>
-        <Container sx={{ display: 'flex', flexWrap: 'wrap' }}>
-          {availableParts.map((part, index) => (
-            <Card key={index} sx={{ maxWidth: 150, m: '1rem' }}>
-              <CardActionArea>
-                <CardMedia component="img" height="140" image={tire} alt={part.name} />
-                <CardContent>
-                  <Typography gutterBottom variant="h5" component="div">
-                    {part.name}
-                  </Typography>
-                  <Typography variant="body2" color="text.secondary">
-                    ${part.price}
-                  </Typography>
-                </CardContent>
-              </CardActionArea>
-              <CardActions>
-                <Button
-                  size="small"
-                  color="primary"
-                  startIcon={<AddShoppingCartIcon />}
-                  onClick={() => addToCart(part)}
-                >
-                  Add to Cart
-                </Button>
-              </CardActions>
-            </Card>
-          ))}
-        </Container>
-      </Container>
-
-      <Container maxWidth="sm" className="mx-auto py-6" sx={{ backgroundColor: '#f5f5f5', borderRadius: 4, padding: 4 }}>
+       <Container maxWidth="sm" className="mx-auto py-6" sx={{ backgroundColor: '#f5f5f5', borderRadius: 4, padding: 4 }}>
   <div style={{ width: '100%' }}>
     <Typography variant="h6" component="h2" gutterBottom className="text-center mt-8">
       Cart
@@ -107,13 +229,6 @@ export default function UserSparePart() {
     </Typography>
   </div>
 </Container>
-
-
-
-
-
-
-
-    </>
-  );
-}
+       </>
+       )
+       }

@@ -47,64 +47,132 @@ const SaveStyle = {
     pb: 3,
 };
 
-
+function handleUserDataChange(userData, setUserData, fieldName, value) {
+    setUserData({ ...userData, [fieldName]: value });
+  }
 
 
 export default function AddEmployeeModal({open,setOpen}) {
    
+    const [userData, setUserData] = useState({});
+
     const handleClose = () => {
-        setOpen(false);
+      setOpen(false);
     };
-  
 
     return (
         <div>
-            
-            <Modal
-                open={open}
-                
-                onClose={handleClose}
-                aria-labelledby="parent-modal-title"
-                aria-describedby="parent-modal-description"
-            >
-                <Box sx={{ ...style }}>
-                    <Typography sx={{ margin: '10px 0 0 0px', fontSize: '24px' }}>Add New User</Typography>
-                    <PersonalInfo />
-                    
-                    <ButtonBtn handleBigModalClose={handleClose}/> 
-                </Box>
-                
-            </Modal>
-        </div>
-    );
+      <Modal
+        open={open}
+        onClose={handleClose}
+        aria-labelledby="parent-modal-title"
+        aria-describedby="parent-modal-description"
+      >
+        <Box sx={{ ...style }}>
+          <Typography sx={{ margin: '10px 0 0 0px', fontSize: '24px' }}>
+            Add New User
+          </Typography>
+          <PersonalInfo
+            userData={userData}
+            setUserData={setUserData}
+            handleUserDataChange={handleUserDataChange}
+          />
+          <ButtonBtn handleBigModalClose={handleClose} />
+        </Box>
+      </Modal>
+    </div>
+  );
 }
 
 
-const PersonalInfo = () => {
+const PersonalInfo = ({ userData, setUserData, handleUserDataChange }) => {
     return (
-        <>
-            <Typography component={'p'} mt={2} mb={2}>Personal Information</Typography>
-            <Grid container spacing={2}>
-                <Grid item xs={12} >
-                    <TextField label='Full Name' fullWidth />
-                </Grid>
-                <Grid item xs={6} >
-                    <TextField label='Birthdate' fullWidth />
-                </Grid>
-                <Grid item xs={6} >
-                    <TextField label='Address' fullWidth />
-                </Grid>
-                <Grid item xs={5} >
-                    <TextField label='Phone' type={'number'} fullWidth />
-                </Grid>
-                <Grid item xs={7} >
-                    <TextField label='Email' type={'email'} fullWidth />
-                </Grid>
-            </Grid>
-        </>
-
-    )
-}
+      <>
+        <Typography component={'p'} mt={2} mb={2}>
+          Personal Information
+        </Typography>
+        <Grid container spacing={2}>
+          <Grid item xs={12}>
+            <TextField
+              label="Full Name"
+              fullWidth
+              name="fullName"
+              onChange={(e) =>
+                handleUserDataChange(
+                  userData,
+                  setUserData,
+                  'fullName',
+                  e.target.value
+                )
+              }
+            />
+          </Grid>
+          <Grid item xs={6}>
+            <TextField
+              label="Birthdate"
+              fullWidth
+              name="birthdate"
+              onChange={(e) =>
+                handleUserDataChange(
+                  userData,
+                  setUserData,
+                  'birthdate',
+                  e.target.value
+                )
+              }
+            />
+          </Grid>
+          <Grid item xs={6}>
+            <TextField
+              label="Address"
+              fullWidth
+              name="address"
+              onChange={(e) =>
+                handleUserDataChange(
+                  userData,
+                  setUserData,
+                  'address',
+                  e.target.value
+                )
+              }
+            />
+          </Grid>
+          <Grid item xs={5}>
+            <TextField
+              label="Phone"
+              type={'number'}
+              fullWidth
+              name="phone"
+              onChange={(e) =>
+                handleUserDataChange(
+                  userData,
+                  setUserData,
+                  'phone',
+                  e.target.value
+                )
+              }
+            />
+          </Grid>
+          <Grid item xs={7}>
+            <TextField
+              label="Email"
+              type={'email'}
+              fullWidth
+              name="email"
+              onChange={(e) =>
+                handleUserDataChange(
+                  userData,
+                  setUserData,
+                  'email',
+                  e.target.value
+                )
+              }
+            />
+          </Grid>
+        </Grid>
+      </>
+    );
+  };
 
 
 const ButtonBtn = ({handleBigModalClose}) => {
