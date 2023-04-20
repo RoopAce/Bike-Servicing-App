@@ -47,29 +47,29 @@ axios.defaults.withCredentials = true;
 export default function Router() {
   const routes = useRoutes([
     {
-        path: "/",
-        element: <Home />,
-        index: true
+      path: "/",
+      element: <Home />,
+      index: true
     },
     {
-        path: "/services",
-        element: <Services />
+      path: "/services",
+      element: <Services />
     },
     {
-        path: "/appointment",
-        element: <Appointment />
+      path: "/appointment",
+      element: <Appointment />
     },
     {
-        path: "/contact",
-        element: <Contact />
+      path: "/contact",
+      element: <Contact />
     },
     {
-        path: "/signup",
-        element: <Signup />
+      path: "/signup",
+      element: <Signup />
     },
     {
-        path: "/login",
-        element: <Login />
+      path: "/login",
+      element: <Login />
     },
     // {
     //     path: "*",
@@ -88,21 +88,21 @@ export default function Router() {
     },
     {
       path: '/userdashboard',
-      element: <UserDashboardLayout/>,
+      element: <UserDashboardLayout />,
       children: [
-        { element: <Navigate to="/userdashboard/userdashboard" />, index: true },
+        { element: <Navigate to="/user/userdashboard" />, index: true },
         { path: 'userdashboard', element: <DashboardPage /> },
         { path: 'useremergency', element: <UserEmergency /> },
         { path: 'userservice', element: <UserService /> },
         { path: 'userappointment', element: <UserAppoint /> },
-        { path: 'userorder', element: <UserOrder /> }, 
+        { path: 'userorder', element: <UserOrder /> },
         { path: 'usersparepart', element: <UserSparePart /> },
-        
+
       ],
     },
     {
       path: '/empdashboard',
-      element: <EmpDashboardLayout/>,
+      element: <EmpDashboardLayout />,
       children: [
         { element: <Navigate to="/empdashboard/empdashboard" />, index: true },
         { path: 'empdashboard', element: <EmpDashboard /> },
@@ -119,7 +119,7 @@ export default function Router() {
       children: [
         { element: <Navigate to="/dashboard/app" />, index: true },
         { path: '404', element: <NotFound /> },
-        
+
       ],
     },
     {

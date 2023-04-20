@@ -61,16 +61,34 @@ import ScrollToTop from './components/scroll-to-top';
 export default function App() {
   return (
     <>
-    <HelmetProvider>
-      <BrowserRouter>
-        <ThemeProvider>
-          <ScrollToTop />
-          {/* <Navbar/> */}
-          <Router />  
-          {/* <Footer/> */}
-        </ThemeProvider>
-      </BrowserRouter>
-    </HelmetProvider>
+      <HelmetProvider>
+        <BrowserRouter>
+          <ThemeProvider>
+            <ScrollToTop />
+            {/* <Navbar/> */}
+            <Router />
+            {/* <Footer/> */}
+          </ThemeProvider>
+        </BrowserRouter>
+      </HelmetProvider>
     </>
   );
 }
+
+
+
+// --- Admin Routes
+
+// <Routes>
+//   <Route path="/" element={<Layout />}>
+//     <Route index element={<Dashboard />} />
+//     <Route path="admin/branch" element={<CreateBranch />} />
+//     <Route path="/admin/totalusers" element={<TotalUser />} />
+//     <Route path="/admin/totalemployee" element={<TotalEmployee />} />
+//     <Route path="/admin/totalproducts" element={<TotalProduct />} />
+//     <Route path="/admin/createemployee" element={<CreateEmployee />} />
+//   </Route>
+// </Routes>
+
+
+

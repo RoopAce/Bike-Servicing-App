@@ -41,7 +41,7 @@ const Login = () => {
       <Navbar />
       <section className="flex items-center justify-center min-h-screen bg-white">
         <div className="w-full max-w-md">
-          <h1 className="mb-4 text-3xl font-semibold text-gray-700 dark:text-gray-200 text-center">
+          <h1 className="mb-4 text-3xl font-semibold text-black dark:text-gray-200 text-center">
             Login into the account
           </h1>
           <div className="bg-neutral-800 p-5">

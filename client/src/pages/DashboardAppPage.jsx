@@ -26,7 +26,7 @@ export default function DashboardAppPage() {
     { name: 'Serviced', value: 134 },
     { name: 'Remaining', value: 240 },
   ];
-  
+
   const COLORS = ['#0088FE', '#00C49F'];
 
   // const[record,setRecord] = useState([])
@@ -48,11 +48,11 @@ export default function DashboardAppPage() {
           <>hello</>
           :
           <Container maxWidth="xl">
-
-<Box className="col main pt-5 mt-3">
+d 
+            <Box className="col main pt-5 mt-3">
               <Grid container spacing={2} sx={{ mt: 3 }}>
                 <Grid item xl={3} sm={6}>
-                  <Card sx={{ height: "88%", bgcolor: "success.main", color: "white" }}>
+                  <Card sx={{ height: "75%", bgcolor: "success.main", color: "white" }}>
                     <CardContent sx={{ bgcolor: "#57b960" }}>
                       <div className="rotate">
                         <MdDirectionsBike size={35} />
@@ -118,34 +118,34 @@ export default function DashboardAppPage() {
             </Box>
 
             <Grid container spacing={3}>
-      <Grid item xs={12}>
-        <Typography variant="h5" component="h5" gutterBottom>
-          Bike Servicing Chart
-        </Typography>
-      </Grid>
-      <Grid item xs={12} sm={8} md={6} lg={4}>
-        <div style={{ height: 300 }}>
-          <PieChart width={400} height={300}>
-            <Pie
-              dataKey="value"
-              isAnimationActive={false}
-              data={data}
-              cx={200}
-              cy={150}
-              outerRadius={100}
-              fill="#8884d8"
-              label
-            >
-              {data.map((entry, index) => (
-                <Cell key={entry.name} fill={COLORS[index % COLORS.length]} />
-              ))}
-            </Pie>
-            <Tooltip />
-            <Legend />
-          </PieChart>
-        </div>
-      </Grid>
-    </Grid>
+              <Grid item xs={12}>
+                <Typography variant="h5" component="h5" gutterBottom>
+                  Bike Servicing Chart
+                </Typography>
+              </Grid>
+              <Grid item xs={12} sm={8} md={6} lg={4}>
+                <div style={{ height: 300 }}>
+                  <PieChart width={400} height={300}>
+                    <Pie
+                      dataKey="value"
+                      isAnimationActive={false}
+                      data={data}
+                      cx={200}
+                      cy={150}
+                      outerRadius={100}
+                      fill="#8884d8"
+                      label
+                    >
+                      {data.map((entry, index) => (
+                        <Cell key={entry.name} fill={COLORS[index % COLORS.length]} />
+                      ))}
+                    </Pie>
+                    <Tooltip />
+                    <Legend />
+                  </PieChart>
+                </div>
+              </Grid>
+            </Grid>
 
 
           </Container>
