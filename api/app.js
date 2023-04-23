@@ -1,103 +1,50 @@
-const express = require("express");
-const cors = require('cors');
-const path = require("path");
-const mongoose = require("mongoose");
-const bcrypt = require('bcrypt');
-const jwt = require('jsonwebtoken');
-const User = require('./models/User.js');
+import express from "express";
+import path from "path";
+import cookieParser from "cookie-parser";
+import logger from "morgan";
+import "dotenv/config";
+import * as url from "url";
+import indexRouter from "./src/v1/routes/index.js";
+import usersRouter from "./src/v1/routes/users.routes.js";
+import authRouter from "./src/v1/routes/auth.routes.js";
+import cors from "cors";
+import getUserLocation from "./src/v1/middlewares/userAddress.js";
+import errorHandler from "./src/v1/utils/errorHandler.js";
+import APPError from "./src/v1/utils/Error.js";
+
 const app = express();
-// const auth = require ('./models/auth.js')
-const bcryptSalt = bcrypt.genSaltSync(10);
-const jwtSecret = 'asjdasdkasd';
-const cookieParser = require('cookie-parser');
-const morgan = require("morgan");
-// require("./src/db/conn");
-require("dotenv").config()
-// const port = process.env.PORT || 3000;
+export const __filename = url.fileURLToPath(import.meta.url);
+export const __dirname = url.fileURLToPath(new URL(".", import.meta.url));
 
-
-
-const db = process.env.MONGOURI;
-
-let port = process.env.PORT;
-
-if (port == null || port == "") {
-    port = process.env.SERVER_PORT;
-}
-mongoose.set('strictQuery', true);
+app.use(logger(":url with :method from :remote-addr :remote-user :response-time ms"));
 app.use(express.json());
+app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
-app.use(morgan("tiny"))
+app.use(cors({ origin: "*" }));
+app.use(express.static(path.join(__dirname, "./src/v1/public/*")));
+app.use("/uploads", express.static(path.join(__dirname, "uploads")));
 
+// Routes configurations
 
-app.use(cors({
-    credentials: true,
-    origin: 'http://localhost:3000',
-}));
+app.use("/", getUserLocation, indexRouter);
 
-mongoose.connect(db, {
-    useNewUrlParser: true,
-    useUnifiedTopology: true
-}).then(() => {
-    console.log('MongoDB connected');
-}).catch((err) => {
-    console.log('MongoDB connection error', err);
+// Handling error in routes
+
+// app.use((err, req, res, next) => {
+//   if (err) {
+//     return res.status(err.status || 500).send({
+//       msg: err.message || "Opps ! Something went wrong 🥲...",
+//       success: false,
+//       stack: process.env.ENV === "development" ? err.stack : null,
+//     });
+//   }
+// });
+
+app.use((req, res, next) => {
+  const error = new APPError(`Cannot find ${req.originalUrl} on this server!`, 404);
+  next(error);
 });
 
+app.use(errorHandler);
 
-app.get("/test", (req, res) => {
-    res.json("hello from RoopAce")
-});
-
-
-app.post('/register', async (req, res) => {
-    const { name, email, phoneNumber, password, userType } = req.body;
-
-    try {
-        console.log(userType)
-        const userDoc = await User.create({
-            name,
-            email,
-            phoneNumber,
-            password: bcrypt.hashSync(password, bcryptSalt),
-            userType,
-        });
-
-        res.json(userDoc);
-    } catch (e) {
-        res.status(422).json(e);
-    }
-
-
-
-});
-
-
-
-app.post('/login', async (req, res) => {
-    const { email, password } = req.body;
-    const userDoc = await User.findOne({ email });
-    if (userDoc) {
-        const passOk = bcrypt.compareSync(password, userDoc.password)
-        if (passOk) {
-            jwt.sign({ email: userDoc.email, id: userDoc._id }, jwtSecret, {}, (err, token) => {
-                if (err) throw err;
-                const cookieData = { token: token, userType: userDoc.userType };
-                res.cookie('userData', JSON.stringify(cookieData)).json('pass ok');
-
-                //res.cookie('token', token).json('pass ok');
-            });
-
-        } else {
-            res.status(422).json('pass not ok');
-        }
-    } else {
-        res.json('Not found');
-    }
-});
-
-
-
-app.listen(port, () => {
-    console.log(`server is up and running at port ${port} successfully `);
-});
+export default app;
