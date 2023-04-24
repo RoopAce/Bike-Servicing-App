@@ -6,7 +6,6 @@ import CreateBranch from "./pages/Admin/pages/CreateBranch";
 import TotalUser from "./pages/Admin/pages/TotalUser";
 import TotalEmployee from "./pages/Admin/pages/TotalEmployee";
 import TotalProduct from "./pages/Admin/pages/TotalProduct";
-import CreateEmployee from "./pages/Admin/pages/CreateEmployee";
 import CreateCategory from "./pages/Admin/pages/CreateCategory";
 import HomePage from "./pages/HomePage";
 import Signup from "./pages/Signup";
@@ -25,6 +24,12 @@ import { setCredentials } from "./features/user/userSlice";
 import Protected from "./routes/ProtectedRoute";
 import AdminRoute from "./routes/adminRoute";
 import EmployeeRoute from "./routes/employeeRoute";
+import Contact from "./components/Contact";
+import Service from "./components/Service";
+import ServiceList from "./components/ServiceList";
+import { userLogin } from "./features/auth/authAction";
+import ServiceList from "./components/SpareParts";
+import SpareParts from "./components/SpareParts";
 
 function App() {
   const dispatch = useDispatch();
@@ -32,16 +37,15 @@ function App() {
     (state) => state.auth
   );
 
-  const { data, isFetching } = useGetDetailsQuery("userDetails", {
-    pollingInterval: 900000, // 15 minutes
+  const { data, isFetching, refetch } = useGetDetailsQuery("userDetails", {
+    pollingInterval: 1000,
   });
-
-  console.log(data);
 
   useEffect(() => {
     if (data && !isFetching) {
       dispatch(setCredentials(data.data));
     }
+    refetch();
   }, [data, dispatch, userToken, logged, loading]);
 
   return (
@@ -51,24 +55,25 @@ function App() {
         <Route path="/signup" element={<Signup />} />
         <Route path="/login" element={<Login />} />
         <Route path="/login" element={<Login />} />
+        <Route path="/contact" element={<Contact />} />
+        <Route path="/spareparts" element={<SpareParts />} />
+        <Route path="/single-service" element={<Service />} />
+
         <Route element={<Protected />}>
           <Route path="/appointment" element={<AppointmentNavbar />} />
         </Route>
 
         {/* Admin */}
-
         <Route element={<AdminRoute />}>
           <Route path="/admin" element={<Layout />}>
             <Route index element={<Dashboard />} />
             <Route path="/admin/branch" element={<CreateBranch />} />
             <Route path="/admin/totalusers" element={<TotalUser />} />
-            <Route path="/admin/createemployee" element={<CreateEmployee />} />
             <Route path="/admin/totalemployee" element={<TotalEmployee />} />
             <Route path="/admin/category" element={<CreateCategory />} />
             <Route path="/admin/totalproducts" element={<TotalProduct />} />
           </Route>
         </Route>
-
         {/* Employee*/}
         <Route element={<EmployeeRoute />}>
           <Route path="/employee" element={<EmployeeLayout />}>

@@ -10,13 +10,15 @@ import Spinner from "../components/common/Spinner";
 import Loading from "../components/common/Loading";
 import { useSelector, useDispatch } from "react-redux";
 import { userLogin } from "../features/auth/authAction";
+import { useLoginMutation } from "../app/services/authService";
+import { invalidateQueries } from "react-query";
+import { toast } from "react-toastify";
 
 export const Login = ({}) => {
   const queryClient = useQueryClient();
-  // const { register, handleSubmit, reset } = useForm();
-  // const { isLoading, isError, error, data, isSuccess, mutate } = useLogin();
-
-  // const navigate = useNavigate();
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
+  const loginMutation = useLoginMutation();
 
   // const submitForm = async (data) => {
   //   // const { data: response, isLoading } = useQuery(["auth"], authAPI.login(data));
@@ -34,9 +36,6 @@ export const Login = ({}) => {
   //     pollingInterval: 900000,
   // });
 
-  const dispatch = useDispatch();
-  const navigate = useNavigate();
-
   const { register, handleSubmit, reset } = useForm();
 
   useEffect(() => {
@@ -45,6 +44,11 @@ export const Login = ({}) => {
 
   const submitForm = (data) => {
     dispatch(userLogin(data));
+
+    if (logged) {
+      reset();
+      navigate("/");
+    }
   };
 
   return (

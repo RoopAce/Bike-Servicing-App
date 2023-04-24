@@ -18,20 +18,13 @@ const userSlice = createSlice({
   initialState,
   reducers: {
     setCredentials: (state, { payload }) => {
-      console.log(payload);
-      state.employee = payload.employeeAccess || false;
+      state.employee = payload.role === 1 ? true : false;
       state.admin = payload.role === 2 ? true : false;
       state.username = payload.username;
       state.role = payload.role;
       state.id = payload._id;
     },
-    removeCredentials: (state) => {
-      state.employee = false;
-      state.admin = false;
-      state.username = null;
-      state.role = 0;
-      state.id = null;
-    },
+    removeCredentials: (state) => initialState,
   },
   extraReducers: {
     [setUser.loading]: (state) => {
