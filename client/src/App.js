@@ -26,10 +26,13 @@ import AdminRoute from "./routes/adminRoute";
 import EmployeeRoute from "./routes/employeeRoute";
 import Contact from "./components/Contact";
 import Service from "./components/Service";
-import ServiceList from "./components/ServiceList";
 import { userLogin } from "./features/auth/authAction";
 import ServiceList from "./components/SpareParts";
+// import SpareParts from "./components/SpareParts";
+// import ServiceList from "./components/SpareParts";
 import SpareParts from "./components/SpareParts";
+import Sparepart from "./components/Sparepart";
+import FAQ from "./pages/Admin/pages/FAQ";
 
 function App() {
   const dispatch = useDispatch();
@@ -48,6 +51,8 @@ function App() {
     refetch();
   }, [data, dispatch, userToken, logged, loading]);
 
+  // changes
+
   return (
     <Router>
       <Routes>
@@ -57,6 +62,7 @@ function App() {
         <Route path="/login" element={<Login />} />
         <Route path="/contact" element={<Contact />} />
         <Route path="/spareparts" element={<SpareParts />} />
+        <Route path="/single-sparepart" element={<Sparepart />} />
         <Route path="/single-service" element={<Service />} />
 
         <Route element={<Protected />}>
@@ -64,16 +70,19 @@ function App() {
         </Route>
 
         {/* Admin */}
-        <Route element={<AdminRoute />}>
-          <Route path="/admin" element={<Layout />}>
-            <Route index element={<Dashboard />} />
-            <Route path="/admin/branch" element={<CreateBranch />} />
-            <Route path="/admin/totalusers" element={<TotalUser />} />
-            <Route path="/admin/totalemployee" element={<TotalEmployee />} />
-            <Route path="/admin/category" element={<CreateCategory />} />
-            <Route path="/admin/totalproducts" element={<TotalProduct />} />
-          </Route>
+
+        {/* <Route element={<AdminRoute />}> */}
+        <Route path="/admin" element={<Layout />}>
+          <Route index element={<Dashboard />} />
+          <Route path="/admin/branch" element={<CreateBranch />} />
+          <Route path="/admin/totalusers" element={<TotalUser />} />
+          <Route path="/admin/totalemployee" element={<TotalEmployee />} />
+          <Route path="/admin/category" element={<CreateCategory />} />
+          <Route path="/admin/totalproducts" element={<TotalProduct />} />
+          <Route path="/admin/faq" element={<FAQ />} />
         </Route>
+        {/* </Route> */}
+
         {/* Employee*/}
         <Route element={<EmployeeRoute />}>
           <Route path="/employee" element={<EmployeeLayout />}>
