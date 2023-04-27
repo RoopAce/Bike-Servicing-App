@@ -1,16 +1,16 @@
 {
-  "name": "acegaraze",
+  "name": "ace-garage",
   "version": "1.0.0",
-  "description": "- A project of Success fr !",
+  "description": "A bike service and management !",
   "main": "index.js",
   "directories": {
     "test": "test"
   },
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
     "react": "cd client; npm start",
     "node": "cd api; npm run dev",
     "dev": "concurrently \"npm run react\" \"npm run node\"",
+    "prod": "cd api && node --watch ./bin/www.js",
     "install": "cd client && ni && cd ../api && ni"
   },
   "keywords": [],

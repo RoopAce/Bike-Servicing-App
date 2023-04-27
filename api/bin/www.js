@@ -11,7 +11,6 @@ import mongoose from "mongoose";
 import { MONGO_URI } from "../store.js";
 
 const serverDebug = debug("server:server");
-
 /**
  * Get port from environment and store in Express.
  */
@@ -29,18 +28,11 @@ const server = http.createServer(app);
  * Listen on provided port, on all network interfaces.
  */
 mongoose.set("strictQuery", true);
-
-// Use the following connection options to fix the MongoNetworkTimeoutError
-const options = {
-  useNewUrlParser: true,
-  useUnifiedTopology: true,
-  serverSelectionTimeoutMS: 5000,
-  socketTimeoutMS: 45000,
-};
+// mongodb://127.0.0.1:27017/upkeepdev
 
 process.env.MONGOURI
   ? mongoose
-      .connect(process.env.MONGOURI, options)
+      .connect(process.env.MONGOURI)
       .then(() => {
         server.listen(port);
         server.on("error", onError);
@@ -52,7 +44,7 @@ process.env.MONGOURI
         process.exit(0);
       })
   : mongoose
-      .connect(MONGO_URI, options)
+      .connect(MONGO_URI)
       .then(() => {
         server.listen(port);
         server.on("error", onError);
@@ -63,6 +55,19 @@ process.env.MONGOURI
         console.log(err);
         process.exit(0);
       });
+
+// mongoose
+//     .connect(MONGO_URI)
+//     .then(() => {
+//         server.listen(port);
+//         server.on('error', onError);
+//         server.on('listening', onListening);
+//         console.log('Server listening and MongoDB connected !!');
+//     })
+//     .catch((err) => {
+//         console.log(err);
+//         process.exit(0);
+//     });
 
 /**
  * Normalize a port into a number, string, or false.
