@@ -1,7 +1,7 @@
 import APPError from "./Error.js";
 
 const errorHandler = (err, req, res, next) => {
-  console.log(err);
+  console.log("Hello hello hello",err);
   err.statusCode = err.statusCode || 500;
   err.status = err.status || "error";
 

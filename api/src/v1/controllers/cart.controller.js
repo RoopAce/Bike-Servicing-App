@@ -6,21 +6,32 @@ import { HttpResponse } from "../utils/HttpResponse.js";
 
 export const addToCart = tryCatch(async (req, res, next) => {
   const { id } = req.body; // spare item id
+  const user_id = req.user; // user id
 
   const spare = await Spare.findById(id);
   if (!spare) {
     throw new APPError("Spare not found", 404);
   }
 
-  const cart = await Cart.findOneAndUpdate(
+  // Try to find a cart via a user
+  const cart = await Cart.findOne({user: user_id});
+
+  let newCart;
+
+  if(!cart){
+    newCart = await Cart.create({
+      user: user_id,
+      item: [id],
+    })
+  }
+
+  newCart = await Cart.findOneAndUpdate(
     { user: req.user },
     { $push: { items: id } },
     { new: true, runValidators: true }
   );
 
-  console.log(cart);
-
-  return res.send(new HttpResponse("Item added to cart", 200, cart));
+  return res.send(new HttpResponse("Item added to cart", 200, newCart));
 });
 
 export const getCart = tryCatch(async (req, res, next) => {

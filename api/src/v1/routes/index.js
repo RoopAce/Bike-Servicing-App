@@ -7,6 +7,8 @@ import employeeRouter from "./employee.routes.js";
 import getRouter from "./get.routes.js";
 import bookRouter from "./booking.routes.js";
 import cartRouter from "./cart.routes.js";
+import dashboardRouter from "./dashboard.routes.js";
+import transactionRouter from "./transaction.routes.js";
 import { Auth, verfiyEmployee, verifyAdmin } from "../middlewares/auth.js";
 
 const router = Router();
@@ -26,6 +28,8 @@ router.use("/api/v1/booking/", bookRouter);
 
 router.use("/api/v1/admin", Auth, verifyAdmin, adminRouter);
 router.use("/api/v1/employee", Auth, verfiyEmployee, employeeRouter);
+router.use("/api/v1/dashboard", dashboardRouter);
+router.use("/api/v1/transaction", transactionRouter);
 
 // generates the report
 router.get("/reports/:id", async (req, res) => {

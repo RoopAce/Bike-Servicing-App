@@ -19,6 +19,7 @@ export const Auth = tryCatch(async (req, res, next) => {
     } else {
       const role = await User.findById(res.id).select("role");
       if (role == null) {
+        console.log("Hello We here")
         throw new APPError("Unauthorized | Please login to continue !", 403);
       }
       req.user = res?.id;

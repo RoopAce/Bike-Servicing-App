@@ -1,8 +1,10 @@
 import { useQuery, useMutation } from "react-query";
+import { toast } from "react-toastify";
+import axios from "axios";
+import { baseURL } from "../api/axiosClient";
 import getAPI from "../api/getApi.js";
 import Navbar from "../components/Navbar.jsx";
 import Footer from "../components/Footer.jsx";
-import { toast } from "react-toastify";
 
 function CartPage() {
   // const { data: cartItems } = queryClient.getQueryData("cart") || {};
@@ -26,6 +28,24 @@ function CartPage() {
     } catch (err) {
       console.log(err);
     }
+  }
+
+  async function handleCheckout(cart) {
+    const {
+      data: { items },
+    } = cart;
+    const newItems = items.map(item => ({name: item.name, price: item.price}));
+    const newTransaction = {
+      items: newItems,
+      cart_id: cart.data._id
+    }
+    await axios.post(`${baseURL}/transaction/create`, newTransaction)
+    .then(resp => resp.data)
+    .then(data => toast.success(data.message))
+    .catch(err => toast.error(err.message))
+    .finally(() => {
+      refetch();
+    })
   }
 
   return (
@@ -66,7 +86,10 @@ function CartPage() {
             <div className="font-bold text-2xl text-right mt-8">
               Total Price: ${carts.data?.totalPrice}
             </div>
-            <button className="w-fit bg-gray-200 hover:bg-gray-300 text-gray-700 py-2 px-4 rounded-md">
+            <button
+              className="w-fit bg-gray-200 hover:bg-gray-300 text-gray-700 py-2 px-4 rounded-md"
+              onClick={() => handleCheckout(carts)}
+            >
               Checkout
             </button>
           </div>

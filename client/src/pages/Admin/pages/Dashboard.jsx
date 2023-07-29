@@ -1,21 +1,45 @@
-import React from 'react'
-import DashboardStatsGrid from '../components/DashboardStatsGrid'
-import TransactionChart from '../components/TransactionChart'
-// import RecentOrders from '../components/RecentOrders'
-import BuyerProfilePieChart from '../components/BuyerProfilePieChart'
+import React, { useEffect, useState } from "react";
+import { useLocation } from "react-router-dom";
+import { useQuery } from "@tanstack/react-query";
+import { useQueryClient } from "@tanstack/react-query";
 
+import DashboardStatsGrid from "../components/DashboardStatsGrid";
+import TransactionChart from "../components/TransactionChart";
+import BuyerProfilePieChart from "../components/BuyerProfilePieChart";
+
+// New Imports
+import getAPI from "../../../api/getApi";
+// New Imports
 
 export default function Dashboard() {
-	return (
-		<div className="flex flex-col gap-4">
-			<DashboardStatsGrid />
-			<div className="flex flex-row gap-4 w-full">
-				<TransactionChart />
+  const queryClient = useQueryClient();
+  const location = useLocation();
+  const { data, isLoading, error, refetch } = useQuery(["dashdata"], () =>
+    getAPI.getDashdata()
+  );
 
-			</div>
-			<div className="flex flex-row gap-4 w-full">
-				<BuyerProfilePieChart />
-			</div>
-		</div>
-	)
+  useEffect(() => {
+    if (["/admin", "/employee"].includes(location.pathname)) {
+      queryClient.invalidateQueries("dashdata");
+      refetch();
+    }
+  }, [location.pathname]);
+
+  return (
+    <div className="flex flex-col gap-4">
+      {isLoading ? (
+        <p>Loading...</p>
+      ) : (
+        <>
+          <DashboardStatsGrid systemStats={data?.data?.systemStats} />
+          <div className="flex flex-row gap-4 w-full">
+            <TransactionChart />
+          </div>
+          <div className="flex flex-row gap-4 w-full">
+            <BuyerProfilePieChart userDemographics={data?.data?.userDemographics} />
+          </div>
+        </>
+      )}
+    </div>
+  );
 }

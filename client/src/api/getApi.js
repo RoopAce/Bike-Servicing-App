@@ -18,6 +18,9 @@ const getAPI = {
   addToCart: (params) => getClient.post("cart", params),
   removeFromCart: (params) => getClient.post("cart/remove", params),
   getCarts: (params) => getClient.get("cart", params),
+
+  // New Entry
+  getDashdata: () => getClient.get("dashboard/get-data"),
 };
 
 export default getAPI;
