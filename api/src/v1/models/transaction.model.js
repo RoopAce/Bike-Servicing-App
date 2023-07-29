@@ -1,6 +1,11 @@
 import mongoose from "mongoose";
 
 const transactionSchema = new mongoose.Schema({
+  user: {
+    type: mongoose.Schema.Types.ObjectId,
+    required: true,
+    ref: "user",
+  },
   date: {
     type: String,
     default: new Date().toLocaleDateString(),

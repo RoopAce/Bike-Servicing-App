@@ -32,20 +32,25 @@ function CartPage() {
 
   async function handleCheckout(cart) {
     const {
-      data: { items },
+      data: { items, user },
     } = cart;
-    const newItems = items.map(item => ({name: item.name, price: item.price}));
+    const newItems = items.map((item) => ({
+      name: item.name,
+      price: item.price,
+    }));
     const newTransaction = {
       items: newItems,
-      cart_id: cart.data._id
-    }
-    await axios.post(`${baseURL}/transaction/create`, newTransaction)
-    .then(resp => resp.data)
-    .then(data => toast.success(data.message))
-    .catch(err => toast.error(err.message))
-    .finally(() => {
-      refetch();
-    })
+      cart_id: cart.data._id,
+      user_id: user,
+    };
+    await axios
+      .post(`${baseURL}/transaction/create`, newTransaction)
+      .then((resp) => resp.data)
+      .then((data) => toast.success(data.message))
+      .catch((err) => toast.error(err.message))
+      .finally(() => {
+        refetch();
+      });
   }
 
   return (

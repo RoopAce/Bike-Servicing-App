@@ -21,6 +21,7 @@ const getAPI = {
 
   // New Entry
   getDashdata: () => getClient.get("dashboard/get-data"),
+  getTransactionData:() => getClient.get("transaction/get-data"),
 };
 
 export default getAPI;
