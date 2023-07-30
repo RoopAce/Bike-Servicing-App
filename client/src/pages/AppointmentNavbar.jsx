@@ -76,6 +76,9 @@ const ApppointmentNavbar = () => {
     setTicked((prev) => !prev);
   }
 
+  // Get the current date in the format yyyy-mm-dd
+  const currentDate = new Date().toISOString().slice(0, 10);
+
   return (
     <>
       <Navbar />
@@ -98,7 +101,7 @@ const ApppointmentNavbar = () => {
                   type="text"
                   {...register("name")}
                   className="mt-1 block w-full p-2 border-gray-300 shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50"
-                  placeholder="Sudip Kumar Mahato"
+                  placeholder="Adam Smith"
                 />
               </label>
               <label className="block">
@@ -114,10 +117,11 @@ const ApppointmentNavbar = () => {
               <label className="block">
                 <span className="text-black">Select Date</span>
                 <input
-                  type="date"
-                  {...register("date")}
-                  className="mt-1 block w-full p-2 border-gray-300 shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50"
-                />
+                type="date"
+                {...register("date")}
+                className="mt-1 block w-full p-2 border-gray-300 shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50"
+                min={currentDate} // Set the minimum date to the current date
+              />
               </label>
               <label className="block">
                 <span className="text-black">Select Service</span>

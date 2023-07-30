@@ -48,10 +48,9 @@ export const Hero = () => {
           </div>
           <div className="mt-4">
             <p className="text-gray-700">
-              Lorem ipsum dolor, sit amet consectetur adipisicing elit. Ad
-              similique nam fugit veritatis quos expedita quidem maxime at quas
-              voluptatum, architecto maiores excepturi. Quos quia, magnam
-              accusamus quasi impedit necessitatibus.
+            your one-stop destination for top-notch motorcycle services and maintenance. 
+            Our passion for motorcycles drives us to provide exceptional care for your prized two-wheeler. 
+            With a team of skilled technicians and state-of-the-art equipment, we ensure your bike receives the royal treatment it deserves.
             </p>
           </div>
           {isLoading ? (
